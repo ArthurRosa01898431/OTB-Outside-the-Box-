@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">OTB</string>
+    <string name="android_head">Android Head</string>
+    <string name="easy">Easy</string>
+    <string name="medium">medium</string>
+    <string name="hard">hard</string>
+    <string name="initial_easy_puzzle_counter">0/3</string>
+    <string name="initial_medium_puzzle_counter">0/4</string>
+    <string name="initial_hard_puzzle_counter">0/2</string>
 </resources>

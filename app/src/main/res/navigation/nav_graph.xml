@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/difficultyMenuFragment"
         android:name="com.example.otb.difficultyMenuFragment"
-        android:label="difficultyMenuFragment"
+        android:label="Difficulty Menu"
         tools:layout="@layout/difficulty_menu_fragment">
         <action
             android:id="@+id/action_difficultyMenuFragment_to_puzzleSelectorEasyFragment"
@@ -24,4 +24,23 @@
             app:destination="@+id/puzzleSelectorHardFragment">
         </action>
     </fragment>
+
+    <fragment
+        android:id="@+id/puzzleSelectorEasyFragment"
+        android:name="com.example.otb.puzzleSelectorEasyFragment"
+        android:label="Easy Puzzle Selector"
+        tools:layout="@layout/puzzle_selector_easy_fragment"/>
+
+    <fragment
+        android:id="@+id/puzzleSelectorMediumFragment"
+        android:name="com.example.otb.puzzleSelectorMediumFragment"
+        android:label="Medium Puzzle Selector"
+        tools:layout="@layout/puzzle_selector_medium_fragment"/>
+
+    <fragment
+        android:id="@+id/puzzleSelectorHardFragment"
+        android:name="com.example.otb.puzzleSelectorHardFragment"
+        android:label="Hard Puzzle Selector"
+        tools:layout="@layout/puzzle_selector_hard_fragment"/>
+
 </navigation>

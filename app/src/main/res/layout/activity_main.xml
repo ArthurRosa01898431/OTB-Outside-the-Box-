@@ -26,6 +26,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:navGraph="@navigation/nav_graph"
-        tools:context=".MainActivity"></androidx.fragment.app.FragmentContainerView>
+        tools:context=".MainActivity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
