@@ -7,4 +7,22 @@
     <string name="initial_easy_puzzle_counter">0/3</string>
     <string name="initial_medium_puzzle_counter">0/4</string>
     <string name="initial_hard_puzzle_counter">0/2</string>
+    <string name="hint">Hint</string>
+    <string name="objective_for_hint">Objective for hint.</string>
+
+    <string-array name="Puzzle1HintsAllObjectives">
+        <item>Test</item>
+        <item>Testone</item>
+    </string-array>
+
+    <string-array name="Puzzle1HintsObjective1">
+        <item>Test1</item>
+        <item>Test3</item>
+    </string-array>
+    <string-array name="Puzzle1HintsObjective2">
+        <item>\uD83D\uDE04</item>
+        <item>Test2</item>
+    </string-array>
+
+
 </resources>
