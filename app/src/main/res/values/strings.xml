@@ -7,7 +7,4 @@
     <string name="initial_easy_puzzle_counter">0/3</string>
     <string name="initial_medium_puzzle_counter">0/4</string>
     <string name="initial_hard_puzzle_counter">0/2</string>
-    <string name="select">Select</string>
-    <string name="Brightness_Easy_Puzzle_Objective_Counter">0/3</string>
-    <string name="File_Easy_Puzzle_Objective_Counter">0/2</string>
 </resources>
