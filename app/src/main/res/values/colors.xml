@@ -3,5 +3,6 @@
     <color name="background">#000000</color>
     <color name="black">#000000</color>
     <color name="android_green">#31aa52</color>
+    <color name="white">#FFFFFF</color>
 
 </resources>
