@@ -25,4 +25,7 @@
     </string-array>
 
 
+    <string name="select">Select</string>
+    <string name="Brightness_Easy_Puzzle_Objective_Counter">0/3</string>
+    <string name="File_Easy_Puzzle_Objective_Counter">0/2</string>
 </resources>
