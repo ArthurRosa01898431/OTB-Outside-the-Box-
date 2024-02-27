@@ -8,20 +8,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class hintRecyclerViewAdapter extends RecyclerView.Adapter<hintRecyclerViewAdapter.MyViewHolder> {
 
-    private Context mContext;
+    private final Context mContext;
     ArrayList<hintModel> mHintModel;
 
-    public hintRecyclerViewAdapter(Context mContext, ArrayList<com.example.otb.hintModel> hintModel) {
+    public hintRecyclerViewAdapter(Context mContext, ArrayList<hintModel> hintModel) {
         this.mContext = mContext;
         this.mHintModel = hintModel;
     }
-
 
     /*
         Inflates the layout.
@@ -45,10 +46,21 @@ public class hintRecyclerViewAdapter extends RecyclerView.Adapter<hintRecyclerVi
     public void onBindViewHolder(
             @NonNull hintRecyclerViewAdapter.MyViewHolder holder, int position) {
 
+        hintModel objectiveHintData = mHintModel.get(position);
 
 
-
-
+        // Only Objectives that been clicked or Hints for all objective should be displayed.
+        if (objectiveHintData.shouldBeDisplayed()) {
+            holder.bindData(
+                    objectiveHintData.getObjectiveImage(),
+                    objectiveHintData.getHintText(),
+                    objectiveHintData.isIsHintForAllObjectives());
+        } else {
+            // Removes objective's hint if they should not be
+            // displayed by setting the visibility to gone.
+            holder.itemView.setVisibility(View.GONE);
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+        }
     }
 
     /*
@@ -66,21 +78,41 @@ public class hintRecyclerViewAdapter extends RecyclerView.Adapter<hintRecyclerVi
      */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView mObjectiveImage;
-        private TextView mHintText;
-
-        private TextView mObjectiveText;
-
+        private final ImageView mObjectiveImage;
+        private final TextView mHintText1;
+        private final TextView mHintText2;
+        private final TextView mObjectiveText;
+        private final CardView mCardViewHint2;
+        private final ConstraintLayout mHintRecyclerRow;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            mHintRecyclerRow = itemView.findViewById(R.id.hintRecyclerRow);
             mObjectiveImage = itemView.findViewById(R.id.hintObjectiveImage);
-            mHintText = itemView.findViewById(R.id.hintText);
+            mHintText1 = itemView.findViewById(R.id.hintText1);
+            mHintText2 = itemView.findViewById(R.id.hintText2);
             mObjectiveText = itemView.findViewById(R.id.hintObjectiveText);
+            mCardViewHint2 = itemView.findViewById(R.id.hintView2);
+        }
 
+        /*
+            Sets the data for the view.
+         */
+        public void bindData(int objectiveImage, String[] hints, boolean isObjectiveAll) {
+            mObjectiveImage.setImageResource(objectiveImage);
+            int text = isObjectiveAll ? R.string.hint_for_all_objectives : R.string.hint_for_a_objective;
+            mObjectiveText.setText(R.string.hint_for_all_objectives);
+            mHintText1.setText(hints[0]);
 
-
+            // If there are two hints for the objective, then
+            // make card view that contains hintText visible.
+            if (hints.length == 2) {
+                mCardViewHint2.setVisibility(View.VISIBLE);
+                mHintText2.setText(hints[1]);
+            } else {
+                mCardViewHint2.setVisibility(View.GONE);
+            }
         }
     }
 }
