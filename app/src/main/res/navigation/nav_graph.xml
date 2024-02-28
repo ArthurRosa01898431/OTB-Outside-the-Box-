@@ -43,7 +43,13 @@
         android:id="@+id/puzzleSelectorMediumFragment"
         android:name="com.example.otb.puzzleSelectorMediumFragment"
         android:label="Medium Puzzle Selector"
-        tools:layout="@layout/puzzle_selector_medium_fragment"/>
+        tools:layout="@layout/puzzle_selector_medium_fragment" >
+
+        <action
+            android:id="@+id/action_puzzleSelectorMediumFragment_to_QR_puzzle_medium"
+            app:destination="@+id/QR_puzzle_medium_puzzlefragment">
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/puzzleSelectorHardFragment"
@@ -66,5 +72,11 @@
         android:id="@+id/file_puzzle_hard_puzzlefragment"
         android:name="com.example.otb.puzzle2FragmentImpl"
         android:label="Puzzle 2" />
+
+    <fragment
+        android:id="@+id/QR_puzzle_medium_puzzlefragment"
+        android:name="com.example.otb.puzzle1MediumFragmentImpl"
+        android:label="Puzzle 1 Medium " />
+
 
 </navigation>

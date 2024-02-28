@@ -77,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         HashSet<Integer> completedObjectives = new HashSet<>();
         // hashset ensures uniqueness between completedObjectives between each puzzle without having to worry about duplicates
         // when adding objectives it will add and store one number into the database
-        // so this will check through all the returned rows and will check the size of the hash which will match the total number of objectievs
+        // so this will check through all the returned rows and will check the size of the hash which will match the total number of objectives
 
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -94,6 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    // THIS NEEDS TO CHANGE TO INCLUDE THE NEW PUZZLE FOR MEDIUM DIFFICULTY. ASK ARTHUR ABOUT THIS
     private int getTotalObjectivesForPuzzle(int puzzleId, String difficulty) {
         // This method should return the total number of objectives for a given puzzle.
         switch (puzzleId) {

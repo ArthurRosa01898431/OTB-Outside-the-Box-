@@ -31,6 +31,15 @@
 
 
 
+    <string-array name="Puzzle1MediumAllObjectives">
+        <item>The Camera is your best friend</item>
+    </string-array>
+    <string-array name="Puzzle1MediumObjective1">
+        <item>We like Codes</item>
+    </string-array>
+
+
+
 
 
     <string name="select">Select</string>

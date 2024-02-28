@@ -46,11 +46,6 @@ public class puzzle2FragmentImpl extends Fragment implements puzzle2Fragment {
         setUpHintFragment();
         mDDHelper = new DatabaseHelper(getContext());
 
-        // pressing the button would result in the hint fragment and the file screen triggering
-        //mBinding.objective1.setOnClickListener(v -> { triggerFileSelection();
-        //    mHintFragment.toggleHintDisplay(1);
-        //    mHintFragment.show(requireActivity().getSupportFragmentManager(), "hintFragment");
-        //});
 
         //so clicking the button would just show the hints instead
         mBinding.objective1.setOnClickListener(v -> {
