@@ -1,14 +1,22 @@
 package com.example.otb;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.viewbinding.ViewBinding;
 
+import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
 
+import com.example.otb.databinding.PuzzleFragment1Binding;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,4 +52,14 @@ public class MainActivity extends AppCompatActivity {
                 appBarConfiguration);
 
     }
+    static void animation(FragmentActivity fragmentActivity, int objectiveNumber) {
+
+        int resID = fragmentActivity.getResources().getIdentifier("objective" + objectiveNumber, "id" , fragmentActivity.getPackageName());
+        Button button = fragmentActivity.findViewById(resID);
+
+//        ImageView iv = activity.findViewById(activity.getResources().getIdentifier("imageView" + index, "id", activity.getPackageName()));
+        button.setBackgroundResource(R.drawable.animation);
+        ((AnimationDrawable) button.getBackground()).start();
+    }
+
 }
