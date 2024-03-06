@@ -15,26 +15,17 @@ import android.view.ViewGroup;
 import android.provider.Settings;
 import androidx.fragment.app.Fragment;
 
-import android.widget.Button;
-
-import com.example.otb.databinding.DifficultyMenuFragmentBinding;
 import com.example.otb.databinding.PuzzleFragment1Binding;
 
-public class puzzleFragment1 extends Fragment implements SensorEventListener {
-
-    private static final int BRIGHTNESS_MAX_THRESHOLD = 220;
-    private static final int BRIGHTNESS_MIN_THRESHOLD = 10;
+public class puzzle1FragmentImpl extends Fragment implements SensorEventListener, puzzle1Fragment {
     private final hintFragment mHintFragment = new hintFragment();
+
+    private final puzzle1LogicHandler mHandler = new puzzle1LogicHandler(this);
 
     // Notices when changes have been made to the sensor.
     private SensorManager mSensorManager;
 
-    private boolean mIsObjective1Solved;
-
-    private boolean mIsObjective2Solved;
-
     PuzzleFragment1Binding mBinding;
-
 
 
     @Override
@@ -45,6 +36,8 @@ public class puzzleFragment1 extends Fragment implements SensorEventListener {
         View view = mBinding.getRoot();
 
         setUpHintFragment();
+
+        // TODO Put all database related stuff here.
 
 
         mBinding.objective1.setOnClickListener(new View.OnClickListener() {
@@ -81,25 +74,42 @@ public class puzzleFragment1 extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        try {
-            int brightness = android.provider.Settings.System.getInt(
-                    requireContext().getContentResolver(), android.provider.Settings.System.SCREEN_BRIGHTNESS);
-            Log.d("ARTHUR", "onSensorChanged: " + brightness);
-
-            if ((brightness > BRIGHTNESS_MAX_THRESHOLD) && !mIsObjective1Solved) {
-                puzzle1Animation(1);
-            }
-
-            if ((brightness < BRIGHTNESS_MIN_THRESHOLD) && !mIsObjective2Solved) {
-                puzzle1Animation(2);
-            }
-        } catch (Settings.SettingNotFoundException ignored) {
-        }
+        mHandler.handleSensorChange();
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+
+    @Override
+    public void puzzle1Animation(int objectiveNumber) {
+        switch (objectiveNumber) {
+            case 1:
+                Log.d("ARTHUR", "puzzle1Animation: 1 is solved");
+                mHandler.setIsObjective1Solved(true); ; // TODO replace tell database that it been solved.
+                animation(getActivity(),1);
+                break;
+
+            case 2:
+                Log.d("ARTHUR", "puzzle1Animation: 2 is solved");
+                mHandler.setIsObjective2Solved(true); // TODO replace tell database that it been solved.
+                animation(getActivity(),2);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    @Override
+    public int getAndroidBrightness() {
+        try {
+            return Settings.System.getInt(getActivity().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+            return -1; // Default or error value
+        }
     }
 
     private void setUpHintFragment() {
@@ -110,23 +120,5 @@ public class puzzleFragment1 extends Fragment implements SensorEventListener {
         mHintFragment.createObjectiveHints(R.drawable.puzzle1_obj_all_image, hintAllObjText, true);
         mHintFragment.createObjectiveHints(R.drawable.puzzle1_obj1_image, hintObj1Text, false);
         mHintFragment.createObjectiveHints(R.drawable.puzzle1_obj2_image, hintObj2Text, false);
-    }
-
-    private void puzzle1Animation(int objectiveNumber) {
-        switch (objectiveNumber) {
-            case 1:
-                Log.d("ARTHUR", "puzzle1Animation: 1 is solved");
-                mIsObjective1Solved = true;
-                animation(getActivity(),1);
-                break;
-
-            case 2:
-                Log.d("ARTHUR", "puzzle1Animation: 2 is solved");
-                mIsObjective2Solved = true;
-                animation(getActivity(),2);
-                break;
-            default:
-                break;
-        }
     }
 }

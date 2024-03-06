@@ -53,7 +53,7 @@
 
     <fragment
         android:id="@+id/brightness_puzzle_easy_puzzlefragment"
-        android:name="com.example.otb.puzzleFragment1"
-        android:label="brightness_puzzle_easy_puzzlefragment" />
+        android:name="com.example.otb.puzzle1FragmentImpl"
+        android:label="Puzzle 1" />
 
 </navigation>
