@@ -14,4 +14,5 @@ public interface puzzle1Fragment {
         @return The brightness value of android device.
      */
     int getAndroidBrightness();
+
 }

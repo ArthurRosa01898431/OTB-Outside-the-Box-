@@ -2,7 +2,9 @@ package com.example.otb;
 
 import static com.example.otb.MainActivity.animation;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.database.Cursor;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -19,6 +21,7 @@ import com.example.otb.databinding.PuzzleFragment1Binding;
 
 public class puzzle1FragmentImpl extends Fragment implements SensorEventListener, puzzle1Fragment {
     private final hintFragment mHintFragment = new hintFragment();
+    private DatabaseHelper dbHelper;
 
     private final puzzle1LogicHandler mHandler = new puzzle1LogicHandler(this);
 
@@ -38,6 +41,7 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
         setUpHintFragment();
 
         // TODO Put all database related stuff here.
+        fetchPuzzleData(1);
 
 
         mBinding.objective1.setOnClickListener(new View.OnClickListener() {
@@ -89,12 +93,14 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
                 Log.d("ARTHUR", "puzzle1Animation: 1 is solved");
                 mHandler.setIsObjective1Solved(true); ; // TODO replace tell database that it been solved.
                 animation(getActivity(),1);
+                dbHelper.insertData(1, objectiveNumber, "Easy");
                 break;
 
             case 2:
                 Log.d("ARTHUR", "puzzle1Animation: 2 is solved");
                 mHandler.setIsObjective2Solved(true); // TODO replace tell database that it been solved.
                 animation(getActivity(),2);
+                dbHelper.insertData(1, objectiveNumber, "Easy");
                 break;
             default:
                 break;
@@ -121,4 +127,39 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
         mHintFragment.createObjectiveHints(R.drawable.puzzle1_obj1_image, hintObj1Text, false);
         mHintFragment.createObjectiveHints(R.drawable.puzzle1_obj2_image, hintObj2Text, false);
     }
+
+
+    // fetch data from database
+    // once you have data update the textview
+    // New method to fetch puzzle data
+    public void updateData(int puzzleId) {
+//        Cursor cursor = dbHelper.getPuzzleData(puzzleId);
+//        if(cursor != null && cursor.moveToFirst()) {
+//            // Use the fetched data as required
+//            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("puzzle_id"));
+//            @SuppressLint("Range") int ObjNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
+//            @SuppressLint("Range") String Dif = cursor.getString(cursor.getColumnIndex("difficulty"));
+//            // You can now use this data as needed, for example, to check objectives
+//
+//            cursor.close();
+//        }
+
+        //Fetch puzz;edate (1, easy)
+
+        //Returns ebverything that has puzzle id 1 amd easy
+
+
+        //if rs.empty() nothing
+
+        //if rs == obj 1 , animate objedctie 1
+
+
+        // fill in in level selector, you dont need to animate, it will be
+        // get everything thats easy, then fill in squares in level selector
+        // puzzle id
+
+
+    }
+
+
 }
