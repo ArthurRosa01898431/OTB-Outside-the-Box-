@@ -90,15 +90,25 @@ public class MainActivity extends AppCompatActivity {
         ((AnimationDrawable) button.getBackground()).start();
     }
 
-    public ResultSet fetchPuzzleData(int puzzleId, String Difficulty) {
+    public static ResultSet fetchPuzzleData(int puzzleId, String Difficulty) throws SQLException {
         ResultSet rs;
-        try (Connection conn = DriverManager.getConnection("myDatabase.db");
-             // add in if puzzle id is 0 do PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM data AND obj_num_difficulty = ?"))
-             // add in if puzzle id is anything but 0 PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM data WHERE puzzle_id = ? AND obj_num_difficulty = ?"))
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM data WHERE puzzle_id = ? AND obj_num_difficulty = ?")) {
+        // Determine the SQL query to use based on the condition
+        String sql;
+        if (puzzleId == 0) {
+            sql = "SELECT * FROM data WHERE obj_num_difficulty = ?";
+        } else {
+            sql = "SELECT * FROM data WHERE puzzle_id = ? AND obj_num_difficulty = ?";
+        }
 
-            pstmt.setInt(1, puzzleId);
-            pstmt.setString(2, Difficulty);
+        try (Connection conn = DriverManager.getConnection("myDatabase.db");
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            if (puzzleId == 0) {
+                pstmt.setString(1, Difficulty);
+            } else {
+                pstmt.setInt(1, puzzleId);
+                pstmt.setString(2, Difficulty);
+            }
 
             rs = pstmt.executeQuery();
         } catch (SQLException e) {
@@ -106,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return rs;
     }
+
+
 }
 
 /*

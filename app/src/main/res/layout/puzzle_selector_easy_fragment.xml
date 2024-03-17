@@ -10,10 +10,10 @@
 
     <Button
         android:id="@+id/brightnessPuzzleSelecter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="396dp"
+        android:layout_width="84dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="212dp"
         android:backgroundTint="@color/android_green"
         android:text="@string/select"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,10 +21,10 @@
 
     <Button
         android:id="@+id/filePuzzleSelecter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="396dp"
-        android:layout_marginEnd="156dp"
+        android:layout_width="84dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="364dp"
+        android:layout_marginEnd="244dp"
         android:backgroundTint="@color/android_green"
         android:text="@string/select"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,47 +32,78 @@
 
     <Button
         android:id="@+id/thirdPuzzleSelecter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="396dp"
-        android:layout_marginEnd="36dp"
+        android:layout_width="84dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginEnd="80dp"
         android:backgroundTint="@color/android_green"
         android:text="@string/select"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/puzzleCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="136dp"
-        android:text="@string/Brightness_Easy_Puzzle_Objective_Counter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/puzzleCounter"
-        android:layout_width="76dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="156dp"
-        android:text="@string/File_Easy_Puzzle_Objective_Counter"
+    <Button
+        android:id="@+id/puzzle1_Objective1"
+        android:layout_width="84dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="244dp"
+        android:background="@drawable/button_outline"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        style="@style/puzzleCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="304dp"
-        android:layout_marginTop="136dp"
-        android:text="@string/Brightness_Easy_Puzzle_Objective_Counter"
+    <Button
+        android:id="@+id/puzzle1_Objective2"
+        android:layout_width="84dp"
+        android:layout_height="77dp"
+        android:layout_marginEnd="244dp"
+        android:background="@drawable/button_outline"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brightnessPuzzleSelecter" />
+
+    <Button
+        android:id="@+id/puzzle2_Objective1"
+        android:layout_width="84dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="80dp"
+        android:background="@drawable/button_outline"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filePuzzleSelecter" />
+
+    <Button
+        android:id="@+id/puzzle2_Objective2"
+        android:layout_width="84dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="436dp"
+        android:background="@drawable/button_outline"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/puzzle3_Objective1"
+        android:layout_width="84dp"
+        android:layout_height="77dp"
+        android:layout_marginEnd="80dp"
+        android:background="@drawable/button_outline"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thirdPuzzleSelecter" />
+
+    <Button
+        android:id="@+id/puzzle3_Objective2"
+        android:layout_width="84dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="80dp"
+        android:background="@drawable/button_outline"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/puzzle3_Objective1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

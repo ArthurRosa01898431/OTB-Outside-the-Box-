@@ -1,6 +1,7 @@
 package com.example.otb;
 
 import static com.example.otb.MainActivity.animation;
+import static com.example.otb.MainActivity.fetchPuzzleData;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,6 +19,9 @@ import android.provider.Settings;
 import androidx.fragment.app.Fragment;
 
 import com.example.otb.databinding.PuzzleFragment1Binding;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class puzzle1FragmentImpl extends Fragment implements SensorEventListener, puzzle1Fragment {
     private final hintFragment mHintFragment = new hintFragment();
@@ -37,11 +41,11 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
                 container, false);
 
         View view = mBinding.getRoot();
-
+        dbHelper = new DatabaseHelper(getContext());
         setUpHintFragment();
 
         // TODO Put all database related stuff here.
-        fetchPuzzleData(1);
+        //fetchPuzzleData(1);
 
 
         mBinding.objective1.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +78,13 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
     public void onPause() {
         super.onPause();
         mSensorManager.unregisterListener(this);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // Call your updateData method to update the UI based on the database
+        updateData(1); // Make sure to pass the correct puzzle ID here
     }
 
     @Override
@@ -132,7 +143,75 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
     // fetch data from database
     // once you have data update the textview
     // New method to fetch puzzle data
-    public void updateData(int puzzleId) {
+
+    public void updateData(final int puzzleId) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    final ResultSet rs = MainActivity.fetchPuzzleData(puzzleId, "easy");
+                    if (!rs.next()) {
+                        // ResultSet is empty
+                        return;
+                    }
+                    rs.beforeFirst();
+
+                    // Since we are going to update the UI
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                while (rs.next()) {
+                                    int objectiveNumber = rs.getInt("objectiveNumber");
+                                    String difficulty = rs.getString("difficulty");
+                                    // Log.d("UpdateData", "Objective Number: " + objectiveNumber + ", Difficulty: " + difficulty);
+                                    updateButtonState(objectiveNumber, difficulty);
+                                }
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+
+    private void updateButtonState(int objectiveNumber, String difficulty) {
+        int buttonId;
+        switch (objectiveNumber) {
+            case 1:
+                buttonId = R.id.puzzle1_Objective1;
+                break;
+            case 2:
+                buttonId = R.id.puzzle1_Objective2;
+                break;
+            // Add more cases as needed
+            default:
+                return; // Invalid ID or not interested in updating
+        }
+
+        View button = getView().findViewById(buttonId);
+        if (button != null) {
+            if ("solved".equals(difficulty)) {
+                button.setBackgroundResource(R.drawable.button_filled);
+            } else {
+                button.setBackgroundResource(R.drawable.button_outline);
+            }
+        }
+    }
+
+
+}
+
+
+
+
+
+
 //        Cursor cursor = dbHelper.getPuzzleData(puzzleId);
 //        if(cursor != null && cursor.moveToFirst()) {
 //            // Use the fetched data as required
@@ -144,22 +223,3 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
 //            cursor.close();
 //        }
 
-        //Fetch puzz;edate (1, easy)
-
-        //Returns ebverything that has puzzle id 1 amd easy
-
-
-        //if rs.empty() nothing
-
-        //if rs == obj 1 , animate objedctie 1
-
-
-        // fill in in level selector, you dont need to animate, it will be
-        // get everything thats easy, then fill in squares in level selector
-        // puzzle id
-
-
-    }
-
-
-}

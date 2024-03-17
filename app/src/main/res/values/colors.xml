@@ -5,5 +5,9 @@
     <color name="android_green">#31aa52</color>
     <color name="blueBlack">#111f28</color>
     <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="blue">#0000FF</color>
+    <color name="purple">#800080</color>
+    <color name="pink">#FFC0CB</color>
 
 </resources>
