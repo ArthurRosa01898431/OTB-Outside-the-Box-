@@ -1,11 +1,10 @@
 package com.example.otb;
 
 import static com.example.otb.MainActivity.animation;
-import static com.example.otb.MainActivity.fetchPuzzleData;
+import static com.example.otb.MainActivity.isObjectiveNumberInDatabase;
+import static com.example.otb.MainActivity.reflectDataOnUI;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.database.Cursor;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -20,19 +19,16 @@ import androidx.fragment.app.Fragment;
 
 import com.example.otb.databinding.PuzzleFragment1Binding;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class puzzle1FragmentImpl extends Fragment implements SensorEventListener, puzzle1Fragment {
     private final hintFragment mHintFragment = new hintFragment();
-    private DatabaseHelper dbHelper;
+    private  DatabaseHelper mDDHelper;
 
     private final puzzle1LogicHandler mHandler = new puzzle1LogicHandler(this);
 
     // Notices when changes have been made to the sensor.
     private SensorManager mSensorManager;
 
-    PuzzleFragment1Binding mBinding;
+    private PuzzleFragment1Binding mBinding;
 
 
     @Override
@@ -41,13 +37,8 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
                 container, false);
 
         View view = mBinding.getRoot();
-        dbHelper = new DatabaseHelper(getContext());
         setUpHintFragment();
-
-        // TODO Put all database related stuff here.
-        //fetchPuzzleData(1);
-
-
+        mDDHelper = new DatabaseHelper(getContext());
         mBinding.objective1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,8 +74,7 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // Call your updateData method to update the UI based on the database
-        updateData(1); // Make sure to pass the correct puzzle ID here
+        reflectDataOnUI_Puzzle1(1);
     }
 
     @Override
@@ -101,22 +91,20 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
     public void puzzle1Animation(int objectiveNumber) {
         switch (objectiveNumber) {
             case 1:
-                Log.d("ARTHUR", "puzzle1Animation: 1 is solved");
-                mHandler.setIsObjective1Solved(true); ; // TODO replace tell database that it been solved.
-                animation(getActivity(),1);
-                dbHelper.insertData(1, objectiveNumber, "Easy");
-                break;
-
+                if (!isObjectiveNumberInDatabase(mDDHelper.getPuzzleData(1, "Easy"), 1)) {
+                    animation(getActivity(), 1);
+                    mDDHelper.insertData(1, objectiveNumber, "Easy");
+                    break;
+                }
             case 2:
-                Log.d("ARTHUR", "puzzle1Animation: 2 is solved");
-                mHandler.setIsObjective2Solved(true); // TODO replace tell database that it been solved.
-                animation(getActivity(),2);
-                dbHelper.insertData(1, objectiveNumber, "Easy");
-                break;
+                if (!isObjectiveNumberInDatabase(mDDHelper.getPuzzleData(1, "Easy"), 2)) {
+                    animation(getActivity(), 2);
+                    mDDHelper.insertData(1, objectiveNumber, "Easy");
+                    break;
+                }
             default:
                 break;
         }
-
     }
 
     @Override
@@ -140,86 +128,27 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
     }
 
 
-    // fetch data from database
-    // once you have data update the textview
-    // New method to fetch puzzle data
 
-    public void updateData(final int puzzleId) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    final ResultSet rs = MainActivity.fetchPuzzleData(puzzleId, "easy");
-                    if (!rs.next()) {
-                        // ResultSet is empty
-                        return;
-                    }
-                    rs.beforeFirst();
+    /*
+        Show on the UI that an objective is solved if it is already solved according
+        to the data base.
 
-                    // Since we are going to update the UI
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                while (rs.next()) {
-                                    int objectiveNumber = rs.getInt("objectiveNumber");
-                                    String difficulty = rs.getString("difficulty");
-                                    // Log.d("UpdateData", "Objective Number: " + objectiveNumber + ", Difficulty: " + difficulty);
-                                    updateButtonState(objectiveNumber, difficulty);
-                                }
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        @param puzzleId - The puzzle ID to check in the database.
+     */
+    public void reflectDataOnUI_Puzzle1(final int puzzleId) {
+        // Main Activity gets data from the database and each puzzle will have it's own lambda.
+        reflectDataOnUI(puzzleId, "", (int objectiveNumber) -> {
+            switch (objectiveNumber) {
+                case 1:
+                    mBinding.objective1.setBackgroundResource(R.drawable.blink88);
+                    break;
+                case 2:
+                    mBinding.objective2.setBackgroundResource(R.drawable.blink88);
+                    break;
+                // Add more cases as needed
+                default:
             }
-        }).start();
+        });
     }
-
-
-    private void updateButtonState(int objectiveNumber, String difficulty) {
-        int buttonId;
-        switch (objectiveNumber) {
-            case 1:
-                buttonId = R.id.puzzle1_Objective1;
-                break;
-            case 2:
-                buttonId = R.id.puzzle1_Objective2;
-                break;
-            // Add more cases as needed
-            default:
-                return; // Invalid ID or not interested in updating
-        }
-
-        View button = getView().findViewById(buttonId);
-        if (button != null) {
-            if ("solved".equals(difficulty)) {
-                button.setBackgroundResource(R.drawable.button_filled);
-            } else {
-                button.setBackgroundResource(R.drawable.button_outline);
-            }
-        }
-    }
-
-
 }
-
-
-
-
-
-
-//        Cursor cursor = dbHelper.getPuzzleData(puzzleId);
-//        if(cursor != null && cursor.moveToFirst()) {
-//            // Use the fetched data as required
-//            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("puzzle_id"));
-//            @SuppressLint("Range") int ObjNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
-//            @SuppressLint("Range") String Dif = cursor.getString(cursor.getColumnIndex("difficulty"));
-//            // You can now use this data as needed, for example, to check objectives
-//
-//            cursor.close();
-//        }
 

@@ -1,37 +1,38 @@
 package com.example.otb;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.viewbinding.ViewBinding;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import com.example.otb.databinding.PuzzleFragment1Binding;
 import com.google.android.material.appbar.MaterialToolbar;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+interface IntRunnable {
+    void run(int intValue);
+}
 
 public class MainActivity extends AppCompatActivity {
 
     // Top Bar.
     private MaterialToolbar mToolbar;
-    private DatabaseHelper dbHelper; // Database helper instance
+
+    private static DatabaseHelper mDDHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,73 +61,90 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(mToolbar, navController,
                 appBarConfiguration);
 
-        dbHelper = new DatabaseHelper(this);
-        insertDataIntoDatabase();
-
+        mDDHelper = new DatabaseHelper(this);
     }
 
-    private void insertDataIntoDatabase() {
-        // Example data
-
-        // puzzle id: 1 -> brightness Easy
-
-        int puzzleId = 1; // Example puzzle ID
-        int numberOfObjectives = 3; // Example number of objects
-        String difLevel = "Easy";
-
-        // Insert data using insertData method
-        dbHelper.insertData(puzzleId, numberOfObjectives, difLevel);
-
-        // You can insert more data as needed
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_reset) {
+            resetGameData();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     static void animation(FragmentActivity fragmentActivity, int objectiveNumber) {
 
         int resID = fragmentActivity.getResources().getIdentifier("objective" + objectiveNumber, "id", fragmentActivity.getPackageName());
         Button button = fragmentActivity.findViewById(resID);
 
-//        ImageView iv = activity.findViewById(activity.getResources().getIdentifier("imageView" + index, "id", activity.getPackageName()));
         button.setBackgroundResource(R.drawable.animation);
         ((AnimationDrawable) button.getBackground()).start();
     }
 
-    public static ResultSet fetchPuzzleData(int puzzleId, String Difficulty) throws SQLException {
-        ResultSet rs;
-        // Determine the SQL query to use based on the condition
-        String sql;
-        if (puzzleId == 0) {
-            sql = "SELECT * FROM data WHERE obj_num_difficulty = ?";
-        } else {
-            sql = "SELECT * FROM data WHERE puzzle_id = ? AND obj_num_difficulty = ?";
-        }
+    /*
+        Show on the UI that an objective is solved if it is already solved according
+        to the data base.
 
-        try (Connection conn = DriverManager.getConnection("myDatabase.db");
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            if (puzzleId == 0) {
-                pstmt.setString(1, Difficulty);
-            } else {
-                pstmt.setInt(1, puzzleId);
-                pstmt.setString(2, Difficulty);
+        @param puzzleId - The puzzle ID to check in the database.
+        @param difficulty - The difficulty to check in the database. Can be empty if specific difficulty doesn't matter.
+        @param function - Lambda that shows in UI that a objective is solved which is puzzle and puzzle selector specific.
+     */
+    static void reflectDataOnUI(final int puzzleId, final String difficulty, final IntRunnable function) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Cursor test = mDDHelper.getPuzzleData(puzzleId, difficulty);
+                while (test != null && test.moveToNext()) {
+                    @SuppressLint("Range") int objNumber = test.getInt(test.getColumnIndex("obj_number"));
+                    // Update UI components here
+                    function.run(objNumber);
+                }
+                assert test != null;
+                test.close();
             }
-
-            rs = pstmt.executeQuery();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return rs;
+        }).start();
     }
 
+    static boolean isObjectiveNumberInDatabase(Cursor cursor, int targetObjectiveNumber) {
+        boolean found = false;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") int objNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
+                if (objNumber == targetObjectiveNumber) {
+                    found = true;
+                    break; // No need to continue searching if found
+                }
+            } while (cursor.moveToNext());
+
+            cursor.close(); // Close the cursor when finished with it
+        }
+
+        return found;
+    }
+
+    private void resetGameData() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Reset Game Data");
+        builder.setMessage("Are you sure you want to reset game data?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mDDHelper.deleteAllData();
+            }
+        });
+        builder.setNegativeButton("No", null); // No action needed for "No" button
+        builder.show();
+    }
 
 }
-
-/*
-        Cursor cursor = dbHelper.getPuzzleData(puzzleId);
-        if(cursor != null && cursor.moveToFirst()) {
-            // Use the fetched data as required
-            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("puzzle_id"));
-            @SuppressLint("Range") String Dif = cursor.getString(cursor.getColumnIndex("difficulty"));
-            cursor.close();
-        }
-        return ;
-        */

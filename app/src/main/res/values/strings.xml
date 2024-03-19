@@ -29,4 +29,5 @@
     <string name="easy_difficulty">Easy Difficulty </string>
     <string name="medium_difficulty">Medium Difficulty</string>
     <string name="hard_difficulty">Hard Difficulty</string>
+    <string name="reset">Reset</string>
 </resources>

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -51,23 +52,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Delete data
-    public void deleteData(int id) {
+    public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("myTable", "id=?", new String[]{String.valueOf(id)});
+        db.execSQL("DELETE FROM " + "myTable");
     }
 
 
-    // Method to fetch puzzle data by ID
-    public Cursor getPuzzleData(int puzzleId) {
+    /*
+        Get the data of all the objectives that have been solved with
+        certain parameters such as puzzleID and difficulty.
+
+        @param puzzleId - The puzzle ID to query for. Can be 0 if specific puzzle doesn't matter.
+        @param difficulty - The difficulty to query for. Can be empty if specific difficulty doesn't matter.
+     */
+    public Cursor getPuzzleData(final int puzzleId, final String difficulty) {
+        Cursor cursor;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query("myTable", new String[] {"puzzle_id", "obj_number"}, "puzzle_id=?", new String[]{String.valueOf(puzzleId)}, null, null, null);
-        if(cursor != null && cursor.moveToFirst()) {
-            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("puzzle_id"));
-            @SuppressLint("Range") int numberOfObj = cursor.getInt(cursor.getColumnIndex("obj_number"));
-            // Assuming you have a PuzzleData class to hold this data
-            return cursor;
+        // Check if both puzzleId and difficulty are provided
+        if (puzzleId != -1 && !difficulty.isEmpty()) {
+            cursor = db.query("myTable", new String[]{"puzzle_id", "obj_number"}, "puzzle_id=? AND difficulty=?",
+                    new String[]{String.valueOf(puzzleId), difficulty}, null, null, null);
         }
-        return null; // Handle this case
+        // Check if only puzzleId is provided
+        else if (puzzleId != -1) {
+            cursor = db.query("myTable", new String[]{"puzzle_id", "obj_number"}, "puzzle_id=?",
+                    new String[]{String.valueOf(puzzleId)}, null, null, null);
+        }
+        // Check if only difficulty is provided
+        else if (!difficulty.isEmpty()) {
+            cursor = db.query("myTable", new String[]{"puzzle_id", "obj_number"}, "difficulty=?",
+                    new String[]{difficulty}, null, null, null);
+        }
+        // Return all data if both puzzleId and difficulty are not provided
+        else {
+            cursor = db.query("myTable", new String[]{"puzzle_id", "obj_number"}, null,
+                    null, null, null, null);
+        }
+        return cursor;
     }
 
 
