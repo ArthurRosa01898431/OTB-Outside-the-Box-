@@ -1,7 +1,5 @@
 package com.example.otb;
 
-import androidx.fragment.app.Fragment;
-
 public class puzzle1FragmentMock implements puzzle1Fragment {
     private final puzzle1LogicHandler mHandler = new puzzle1LogicHandler(this);
     private int mBrightness = 0;

@@ -1,6 +1,5 @@
 package com.example.otb;
 
-import static com.example.otb.MainActivity.reflectDataOnUI;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,11 +22,14 @@ import com.example.otb.databinding.PuzzleSelectorEasyFragmentBinding;
 
 public class puzzleSelectorEasyFragment extends Fragment {
     // View binding object for the DifficultyMenuFragment's layout.
-
     private PuzzleSelectorEasyFragmentBinding mBinding;
+
+    private DatabaseHelper mDDHelper;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = PuzzleSelectorEasyFragmentBinding.inflate(inflater,
                 container, false);
+        mDDHelper = new DatabaseHelper(getContext())
+        ;
         // Inflate the layout for this fragment
         View view = mBinding.getRoot();
 
@@ -40,7 +42,6 @@ public class puzzleSelectorEasyFragment extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorEasyFragment_to_brightness_puzzle_easy);
             }
         });
-
         mBinding.puzzle1Objective2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +59,7 @@ public class puzzleSelectorEasyFragment extends Fragment {
      */
     public void reflectDataOnUISelectorEasy() {
         // Main Activity gets data from the database and each puzzle will have it's own lambda.
-        reflectDataOnUI(-1, "Easy", (int objectiveNumber) -> {
+        mDDHelper.reflectDataOnUI(-1, "Easy", (int objectiveNumber) -> {
             switch (objectiveNumber) {
                 case 1:
                     mBinding.puzzle1Objective1.setBackgroundResource(R.drawable.blink88);

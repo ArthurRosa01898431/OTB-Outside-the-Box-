@@ -1,32 +1,23 @@
 package com.example.otb;
 
 import static com.example.otb.MainActivity.animation;
-import static com.example.otb.MainActivity.isObjectiveNumberInDatabase;
-import static com.example.otb.MainActivity.reflectDataOnUI;
 
-import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.provider.Settings;
+
 import androidx.fragment.app.Fragment;
 
 import com.example.otb.databinding.PuzzleFragment1Binding;
 
-public class puzzle1FragmentImpl extends Fragment implements SensorEventListener, puzzle1Fragment {
+public class puzzle1FragmentImpl extends Fragment implements puzzle1Fragment {
+
     private final hintFragment mHintFragment = new hintFragment();
     private  DatabaseHelper mDDHelper;
 
     private final puzzle1LogicHandler mHandler = new puzzle1LogicHandler(this);
-
-    // Notices when changes have been made to the sensor.
-    private SensorManager mSensorManager;
 
     private PuzzleFragment1Binding mBinding;
 
@@ -39,6 +30,8 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
         View view = mBinding.getRoot();
         setUpHintFragment();
         mDDHelper = new DatabaseHelper(getContext());
+
+        mHandler.startThread();
         mBinding.objective1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,17 +52,12 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        mSensorManager = (SensorManager) requireContext().getSystemService(Context.SENSOR_SERVICE);
-        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY), SensorManager.SENSOR_DELAY_NORMAL);
+    public void onDestroy() {
+        mHandler.stopThread();
+        super.onDestroy();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        mSensorManager.unregisterListener(this);
-    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -77,31 +65,23 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
         reflectDataOnUI_Puzzle1(1);
     }
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        mHandler.handleSensorChange();
-    }
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
 
     @Override
     public void puzzle1Animation(int objectiveNumber) {
         switch (objectiveNumber) {
             case 1:
-                if (!isObjectiveNumberInDatabase(mDDHelper.getPuzzleData(1, "Easy"), 1)) {
+                if (!mDDHelper.isObjectiveNumberInDatabase("Easy", 1, 1)) {
+                    mDDHelper.insertData(1, objectiveNumber, "Easy");
                     animation(getActivity(), 1);
-                    mDDHelper.insertData(1, objectiveNumber, "Easy");
-                    break;
                 }
+                break;
             case 2:
-                if (!isObjectiveNumberInDatabase(mDDHelper.getPuzzleData(1, "Easy"), 2)) {
-                    animation(getActivity(), 2);
+                if (!mDDHelper.isObjectiveNumberInDatabase("Easy", 1, 2)) {
                     mDDHelper.insertData(1, objectiveNumber, "Easy");
-                    break;
+                    animation(getActivity(), 2);
                 }
+                break;
             default:
                 break;
         }
@@ -127,8 +107,6 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
         mHintFragment.createObjectiveHints(R.drawable.puzzle1_obj2_image, hintObj2Text, false);
     }
 
-
-
     /*
         Show on the UI that an objective is solved if it is already solved according
         to the data base.
@@ -137,7 +115,7 @@ public class puzzle1FragmentImpl extends Fragment implements SensorEventListener
      */
     public void reflectDataOnUI_Puzzle1(final int puzzleId) {
         // Main Activity gets data from the database and each puzzle will have it's own lambda.
-        reflectDataOnUI(puzzleId, "", (int objectiveNumber) -> {
+        mDDHelper.reflectDataOnUI(puzzleId, "", (int objectiveNumber) -> {
             switch (objectiveNumber) {
                 case 1:
                     mBinding.objective1.setBackgroundResource(R.drawable.blink88);
