@@ -50,6 +50,21 @@ public class puzzleSelectorEasyFragment extends Fragment {
             }
         });
 
+        mBinding.puzzle2Objective1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // obtain a NavController and navigate
+                Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorEasyFragment_to_light_puzzle_easy);
+            }
+        });
+        mBinding.puzzle2Objective2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // obtain a NavController and navigate
+                Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorEasyFragment_to_light_puzzle_easy);
+            }
+        });
+
         return view;
     }
 

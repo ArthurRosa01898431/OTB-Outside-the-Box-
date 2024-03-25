@@ -6,22 +6,24 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <Button
-        android:id="@+id/objective1"
+    <ImageButton
+        android:id="@+id/easy_puzzle1_objective1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/blink00"
+        android:backgroundTint="@color/puzzle1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle1_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_puzzle1_horizontal"
         app:layout_constraintVertical_bias="0.100000024" />
 
-    <Button
-        android:id="@+id/objective2"
+    <ImageButton
+        android:id="@+id/easy_puzzle1_objective2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/blink00"
+        android:backgroundTint="@color/puzzle1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_puzzle1_vertical"

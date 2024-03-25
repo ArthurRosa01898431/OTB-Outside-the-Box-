@@ -1,5 +1,8 @@
 plugins {
     id("com.android.application")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -30,9 +33,14 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:1.12.0")
     val navVersion = "2.7.7"
 
     implementation("androidx.navigation:navigation-fragment:$navVersion")
@@ -56,4 +64,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    implementation("com.google.dagger:hilt-android:2.44")
+    annotationProcessor("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+    annotationProcessor("androidx.hilt:hilt-compiler:1.2.0")
 }
+

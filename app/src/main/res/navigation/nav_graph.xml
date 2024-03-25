@@ -35,7 +35,11 @@
         tools:layout="@layout/puzzle_selector_easy_fragment">
         <action
             android:id="@+id/action_puzzleSelectorEasyFragment_to_brightness_puzzle_easy"
-            app:destination="@+id/brightness_puzzle_easy_puzzlefragment">
+            app:destination="@+id/brightness_puzzle_easy_puzzle_fragment">
+        </action>
+        <action
+            android:id="@+id/action_puzzleSelectorEasyFragment_to_light_puzzle_easy"
+            app:destination="@+id/light_puzzle_easy_puzzle_fragment">
         </action>
     </fragment>
 
@@ -52,8 +56,11 @@
         tools:layout="@layout/puzzle_selector_hard_fragment"/>
 
     <fragment
-        android:id="@+id/brightness_puzzle_easy_puzzlefragment"
-        android:name="com.example.otb.puzzle1FragmentImpl"
-        android:label="Puzzle 1" />
+        android:id="@+id/brightness_puzzle_easy_puzzle_fragment"
+        android:name="com.example.otb.puzzle1FragmentImpl" />
+
+    <fragment
+        android:id="@+id/light_puzzle_easy_puzzle_fragment"
+        android:name="com.example.otb.puzzle2FragmentImpl" />
 
 </navigation>

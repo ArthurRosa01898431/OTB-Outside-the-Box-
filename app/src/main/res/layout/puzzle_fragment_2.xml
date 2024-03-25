@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <ImageButton
+        android:id="@+id/easy_puzzle2_objective1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blink00"
+        android:backgroundTint="@color/puzzle2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/easy_puzzle2_objective2"
+        app:layout_constraintTop_toTopOf="@+id/horizontal_puzzle2_guideline1" />
+
+    <ImageButton
+        android:id="@+id/easy_puzzle2_objective2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blink00"
+        android:backgroundTint="@color/puzzle2"
+        app:layout_constraintEnd_toStartOf="@+id/easy_puzzle2_objective1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/horizontal_puzzle2_guideline1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/umbrella"
+        app:layout_constraintEnd_toEndOf="@+id/easy_puzzle2_objective1"
+        app:layout_constraintStart_toStartOf="@+id/easy_puzzle2_objective1"
+        app:layout_constraintTop_toTopOf="@+id/easy_puzzle2_objective1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_puzzle2_guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="290dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

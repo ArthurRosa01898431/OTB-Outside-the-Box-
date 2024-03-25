@@ -8,24 +8,44 @@
     android:background="@color/background">
 
 
-    <Button
+    <ImageButton
         android:id="@+id/puzzle1_Objective1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/blink00"
+        android:backgroundTint="@color/puzzle1"
         app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle1Selector_vertical2"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_puzzle1Selector_vertical1"
         app:layout_constraintTop_toTopOf="@+id/guideline_puzzle1Selector_horizontal1" />
 
-    <Button
+    <ImageButton
         android:id="@+id/puzzle1_Objective2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/blink00"
+        android:backgroundTint="@color/puzzle1"
         app:layout_constraintBottom_toTopOf="@+id/guideline_puzzle1Selector_horizontal2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle1Selector_vertical2"
         app:layout_constraintStart_toStartOf="@+id/guideline_puzzle1Selector_vertical1" />
+
+    <ImageButton
+        android:id="@+id/puzzle2_Objective1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blink00"
+        android:backgroundTint="@color/puzzle2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle2Selector_vertical1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_puzzle2Selector_horizontal1" />
+
+    <ImageButton
+        android:id="@+id/puzzle2_Objective2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blink00"
+        android:backgroundTint="@color/puzzle2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle1Selector_vertical2"
+        app:layout_constraintStart_toStartOf="@+id/guideline_puzzle1Selector_vertical1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_puzzle2Selector_horizontal1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_puzzle1Selector_horizontal1"
@@ -54,6 +74,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="222dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_puzzle2Selector_horizontal1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="180dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_puzzle2Selector_vertical1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="280dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

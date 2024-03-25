@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -77,10 +78,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    static void animation(FragmentActivity fragmentActivity, int objectiveNumber) {
+    static void animation(FragmentActivity fragmentActivity, int objectiveNumber, int puzzleNumber, String difficulty) {
+        String buttonID = difficulty + "_puzzle" + puzzleNumber+ "_objective" + objectiveNumber;
 
-        int resID = fragmentActivity.getResources().getIdentifier("objective" + objectiveNumber, "id", fragmentActivity.getPackageName());
-        Button button = fragmentActivity.findViewById(resID);
+        int resID = fragmentActivity.getResources().getIdentifier(buttonID, "id", fragmentActivity.getPackageName());
+        ImageButton button = fragmentActivity.findViewById(resID);
 
         button.setBackgroundResource(R.drawable.animation);
         ((AnimationDrawable) button.getBackground()).start();

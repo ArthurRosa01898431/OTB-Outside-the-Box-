@@ -12,14 +12,24 @@
     <string name="hint_for_all_objectives">Hints for this set of objectives.</string>
     <string name="hint_for_a_objective">Hints for just this objective.</string>
 
-    <string-array name="Puzzle1HintsAllObjectives">
+    <string-array name="EasyPuzzle1HintsAllObjectives">
         <item>Brightness</item>
     </string-array>
-    <string-array name="Puzzle1HintsObjective1">
+    <string-array name="EasyPuzzle1HintsObjective1">
         <item>\uA71B</item>
     </string-array>
-    <string-array name="Puzzle1HintsObjective2">
+    <string-array name="EasyPuzzle1HintsObjective2">
         <item>\u2193</item>
+    </string-array>
+
+    <string-array name="EasyPuzzle2HintsAllObjectives">
+        <item>Light</item>
+    </string-array>
+    <string-array name="EasyPuzzle2HintsObjective1">
+        <item>Cave Emoji</item>
+    </string-array>
+    <string-array name="EasyPuzzle2HintsObjective2">
+        <item>Lamp Emoji</item>
     </string-array>
 
 
