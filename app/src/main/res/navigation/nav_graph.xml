@@ -49,11 +49,22 @@
         android:id="@+id/puzzleSelectorHardFragment"
         android:name="com.example.otb.puzzleSelectorHardFragment"
         android:label="Hard Puzzle Selector"
-        tools:layout="@layout/puzzle_selector_hard_fragment"/>
+        tools:layout="@layout/puzzle_selector_hard_fragment">
+
+        <action
+            android:id="@+id/action_puzzleSelectorHardFragment_to_file_puzzle_hard"
+            app:destination="@+id/file_puzzle_hard_puzzlefragment">
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/brightness_puzzle_easy_puzzlefragment"
         android:name="com.example.otb.puzzle1FragmentImpl"
         android:label="Puzzle 1" />
+
+    <fragment
+        android:id="@+id/file_puzzle_hard_puzzlefragment"
+        android:name="com.example.otb.puzzle2FragmentImpl"
+        android:label="Puzzle 2" />
 
 </navigation>

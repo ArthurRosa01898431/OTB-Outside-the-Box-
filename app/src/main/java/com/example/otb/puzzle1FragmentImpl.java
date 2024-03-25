@@ -71,13 +71,13 @@ public class puzzle1FragmentImpl extends Fragment implements puzzle1Fragment {
     public void puzzle1Animation(int objectiveNumber) {
         switch (objectiveNumber) {
             case 1:
-                if (!mDDHelper.isObjectiveNumberInDatabase("Easy", 1, 1)) {
+                if (!mDDHelper.isObjectiveNumberInDatabase ("Easy", 1, 1)) {
                     mDDHelper.insertData(1, objectiveNumber, "Easy");
                     animation(getActivity(), 1);
                 }
                 break;
             case 2:
-                if (!mDDHelper.isObjectiveNumberInDatabase("Easy", 1, 2)) {
+                if (!mDDHelper.isObjectiveNumberInDatabase ("Easy", 1, 2)) {
                     mDDHelper.insertData(1, objectiveNumber, "Easy");
                     animation(getActivity(), 2);
                 }

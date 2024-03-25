@@ -26,15 +26,21 @@ public class puzzleSelectorEasyFragment extends Fragment {
 
     private DatabaseHelper mDDHelper;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = PuzzleSelectorEasyFragmentBinding.inflate(inflater,
-                container, false);
-        mDDHelper = new DatabaseHelper(getContext())
-        ;
+        mBinding = PuzzleSelectorEasyFragmentBinding.inflate(inflater, container, false);
+        mDDHelper = new DatabaseHelper(getContext());
         // Inflate the layout for this fragment
         View view = mBinding.getRoot();
+        return view;
+    }
 
-        reflectDataOnUISelectorEasy();
+    /*
+        Show on the UI that an easy objective is solved if
+        it is already solved according to the data base.
+     */
 
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        reflectAllEasyPuzzlesDataOnUI();
         mBinding.puzzle1Objective1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,15 +55,45 @@ public class puzzleSelectorEasyFragment extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorEasyFragment_to_brightness_puzzle_easy);
             }
         });
-
-        return view;
     }
 
-    /*
-        Show on the UI that an easy objective is solved if
-        it is already solved according to the data base.
-     */
-    public void reflectDataOnUISelectorEasy() {
+    public void reflectAllEasyPuzzlesDataOnUI() {
+        int[] puzzleIds = {1}; //  add more ids to array based number of actual puzzle IDs.
+        for (int puzzleId : puzzleIds) {
+            reflectDataOnUISelectorEasy(puzzleId);
+        }
+    }
+
+    public void reflectDataOnUISelectorEasy(int puzzleId) {
+        mDDHelper.reflectDataOnUI(puzzleId, "Easy", objectiveNumber -> {
+            // Dynamically trigger animations based on puzzleId and objectiveNumber
+            triggerAnimationForObjective(puzzleId, objectiveNumber);
+        });
+    }
+    private void triggerAnimationForObjective(int puzzleId, int objectiveNumber) {
+        switch (puzzleId) {
+            case 1:
+                if (objectiveNumber == 1)
+                    mBinding.puzzle1Objective1.setBackgroundResource(R.drawable.blink88);
+                else if (objectiveNumber == 2)
+                    mBinding.puzzle1Objective2.setBackgroundResource(R.drawable.blink88);
+                break;
+            //case 2:
+            // 2 represents the id, so with the file puzzle now being moved to hard, just change the id number with the case
+            //    if (objectiveNumber == 1)
+            //        mBinding.puzzle2Objective1.setBackgroundResource(R.drawable.blink88);
+            //    break;
+            // put more cases here for more puzzles
+            default:
+                break;
+        }
+    }
+}
+
+
+
+// needs be changed quickly to adapt to multiple puzzles, old function that doesn't need to be used anymore cause it assumed there was just 1 puzzle
+    /*public void reflectDataOnUISelectorEasy() {
         // Main Activity gets data from the database and each puzzle will have it's own lambda.
         mDDHelper.reflectDataOnUI(-1, "Easy", (int objectiveNumber) -> {
             switch (objectiveNumber) {
@@ -72,5 +108,4 @@ public class puzzleSelectorEasyFragment extends Fragment {
             }
 
         });
-    }
-}
+    }*/

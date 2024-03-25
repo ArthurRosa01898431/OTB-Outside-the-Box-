@@ -22,6 +22,16 @@
         <item>\u2193</item>
     </string-array>
 
+    <string-array name="Puzzle2HintsAllObjectives">
+        <item>Where Are Things Stored</item>
+    </string-array>
+    <string-array name="Puzzle2HintsObjective1">
+        <item>You Must Go Back</item>
+    </string-array>
+
+
+
+
 
     <string name="select">Select</string>
     <string name="Brightness_Easy_Puzzle_Objective_Counter">0/3</string>
