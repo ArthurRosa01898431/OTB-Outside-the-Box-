@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 package com.example.otb;
 
 import static androidx.core.content.ContextCompat.startActivity;

@@ -6,7 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     <Button
         android:id="@+id/objective1"
         android:layout_width="wrap_content"
@@ -15,8 +18,14 @@
         android:layout_marginBottom="288dp"
         android:background="@drawable/blink00"
         app:layout_constraintBottom_toBottomOf="parent"
+<<<<<<< Updated upstream
         app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.102" />
+=======
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+>>>>>>> Stashed changes
 
 </androidx.constraintlayout.widget.ConstraintLayout>

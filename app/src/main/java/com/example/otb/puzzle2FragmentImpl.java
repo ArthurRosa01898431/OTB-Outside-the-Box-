@@ -115,6 +115,3 @@ public class puzzle2FragmentImpl extends Fragment implements puzzle2Fragment {
     }
 
 }
-
-
-
