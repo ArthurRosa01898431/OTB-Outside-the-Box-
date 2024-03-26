@@ -32,6 +32,25 @@
         <item>Lamp Emoji</item>
     </string-array>
 
+    <string-array name="Puzzle2HintsAllObjectives">
+        <item>Where Are Things Stored</item>
+    </string-array>
+    <string-array name="Puzzle2HintsObjective1">
+        <item>You Must Go Back</item>
+    </string-array>
+
+
+
+    <string-array name="Puzzle1MediumAllObjectives">
+        <item>The Camera is your best friend</item>
+    </string-array>
+    <string-array name="Puzzle1MediumObjective1">
+        <item>We like Codes</item>
+    </string-array>
+
+
+
+
 
     <string name="select">Select</string>
     <string name="Brightness_Easy_Puzzle_Objective_Counter">0/3</string>

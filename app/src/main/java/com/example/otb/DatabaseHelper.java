@@ -7,11 +7,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.HashSet;
 import java.util.concurrent.CountDownLatch;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "myDatabase.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String CREATE_TABLE = "CREATE TABLE myTable (puzzle_id INTEGER, obj_number INTEGER, difficulty STRING)";
 
     public DatabaseHelper(Context context) {
@@ -39,6 +40,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + "myTable");
     }
 
+    public int howManyPuzzleCompleted(final String difficulty) {
+        // Assuming you know the range of puzzle IDs. If not, this could be dynamically fetched from the database.
+        int totalCompleted = 0;
+        int[] puzzleIds = {1, 2}; // Example: If you have two puzzles. Expand this as needed.
+
+        for (int puzzleId : puzzleIds) {
+            if (isPuzzleCompleted(puzzleId, difficulty)) {
+                totalCompleted++;
+            }
+        }
+
+        return totalCompleted;
+    }
+
     public boolean isObjectiveNumberInDatabase(String difficulty, int puzzleID, int targetObjectiveNumber) {
         final Cursor cursor = getPuzzleData(puzzleID, difficulty);
         boolean found = false;
@@ -56,32 +71,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return found;
     }
 
-    public int howManyPuzzleCompleted(final String difficulty) {
-        final Cursor cursor = getPuzzleData(-1 ,difficulty);
-        boolean puzzle1_objective1Completed = false;
-        boolean puzzle1_objective2Completed = false;
 
-        int totalCompleted = 0;
+    public boolean isPuzzleCompleted(int puzzleId, String difficulty) {
+        Cursor cursor = getPuzzleData(puzzleId, difficulty);
+        HashSet<Integer> completedObjectives = new HashSet<>();
+        // hashset ensures uniqueness between completedObjectives between each puzzle without having to worry about duplicates
+        // when adding objectives it will add and store one number into the database
+        // so this will check through all the returned rows and will check the size of the hash which will match the total number of objectives
 
-        if (cursor != null && cursor.getCount() > 0) {
-            switch(difficulty) {
-                case "Easy":
-                    while (cursor.moveToNext()) {
-                        @SuppressLint("Range") int objNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
-                        if (objNumber == 1) {
-                            puzzle1_objective1Completed = true;
-                        } else if (objNumber == 2) {
-                            puzzle1_objective2Completed = true;
-                        }
-                    }
-                    if (puzzle1_objective1Completed && puzzle1_objective2Completed) {
-                        totalCompleted++;
-                    }
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int objNumber = cursor.getInt(cursor.getColumnIndexOrThrow("obj_number"));
+                completedObjectives.add(objNumber);
             }
+            while (cursor.moveToNext());
             cursor.close();
         }
-        return totalCompleted;
+
+        int totalObjectives = getTotalObjectivesForPuzzle(puzzleId, difficulty);
+
+        return completedObjectives.size() == totalObjectives;
     }
+
+
+    // THIS NEEDS TO CHANGE TO INCLUDE THE NEW PUZZLE FOR MEDIUM DIFFICULTY. ASK ARTHUR ABOUT THIS
+    private int getTotalObjectivesForPuzzle(int puzzleId, String difficulty) {
+        // This method should return the total number of objectives for a given puzzle.
+        switch (puzzleId) {
+            case 1:
+                return 2; // Example: Puzzle 1 - Easy has 2 objectives in "Easy" difficulty.
+            case 2:
+                return 1; // Example: Puzzle 2 (Renaming this to Puzzle 1 Hard) has 1 objective in "Hard" difficulty.
+            default:
+                return 0; // Default case, if puzzle ID is unknown.
+        }
+    }
+
+
 
     /*
         Show on the UI that an objective is solved if it is already solved according
@@ -95,7 +121,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         final Cursor cursor = getPuzzleData(puzzleId, difficulty);
         if (cursor != null && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
-                @SuppressLint("Range") int objNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
+                //@SuppressLint("Range") int objNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
+                int objNumber = cursor.getInt(cursor.getColumnIndexOrThrow("obj_number"));
                 // Update UI components here
                 function.run(objNumber);
             }
@@ -110,7 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
        @param puzzleId - The puzzle ID to query for. Can be 0 if specific puzzle doesn't matter.
        @param difficulty - The difficulty to query for. Can be empty if specific difficulty doesn't matter.
     */
-    private synchronized Cursor getPuzzleData(final int puzzleId, final String difficulty) {
+    public synchronized Cursor getPuzzleData(final int puzzleId, final String difficulty) {
 
         final Cursor[] cursor = new Cursor[1];
         final CountDownLatch latch = new CountDownLatch(1);
@@ -153,9 +180,53 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor[0];
     }
 
+    // needed to add since the database wasn't being upgraded correctly
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Handle database upgrade here
+        if (oldVersion < 2) {
+            // If the column doesn't exist in version 1, add it in version 2.
+            db.execSQL("ALTER TABLE myTable ADD COLUMN obj_number INTEGER DEFAULT 0");
+        }
+        // Handle further upgrades
     }
+
 }
-    
+
+
+
+
+
+
+    /*
+
+    not in use cause it assumes there was only 1 easy puzzle
+    public int howManyPuzzleCompleted(final String difficulty) {
+        final Cursor cursor = getPuzzleData(-1 ,difficulty);
+        boolean puzzle1_objective1Completed = false;
+        boolean puzzle1_objective2Completed = false;
+        boolean puzzle2_objective1Completed = false;
+
+        int totalCompleted = 0;
+
+        if (cursor != null && cursor.getCount() > 0) {
+            switch(difficulty) {
+                case "Easy":
+                    while (cursor.moveToNext()) {
+                        @SuppressLint("Range") int objNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
+                        if (objNumber == 1) {
+                            puzzle1_objective1Completed = true;
+                        } else if (objNumber == 2) {
+                            puzzle1_objective2Completed = true;
+                        }
+                    }
+                    if (puzzle1_objective1Completed && puzzle1_objective2Completed) {
+                        totalCompleted++;
+                    }
+            }
+            cursor.close();
+        }
+        return totalCompleted;
+    }
+
+
+     */

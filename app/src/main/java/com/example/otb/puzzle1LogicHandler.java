@@ -1,7 +1,7 @@
 package com.example.otb;
 
 import android.os.Handler;
-import android.util.Log;;
+import android.util.Log;
 
 public class puzzle1LogicHandler {
     private static final int BRIGHTNESS_MAX_THRESHOLD = 220;

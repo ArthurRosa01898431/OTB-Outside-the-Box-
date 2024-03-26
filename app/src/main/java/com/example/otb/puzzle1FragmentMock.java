@@ -1,7 +1,14 @@
 package com.example.otb;
 
 public class puzzle1FragmentMock implements puzzle1Fragment {
-    private final puzzle1LogicHandler mHandler = new puzzle1LogicHandler(this);
+
+    private final puzzle1LogicHandler mHandler;
+
+    public puzzle1FragmentMock() {
+        // Make sure that puzzle1LogicHandler can accept puzzle1Fragment or its implementer
+        mHandler = new puzzle1LogicHandler(this);
+    }
+
     private int mBrightness = 0;
     private boolean mObjective1IsSolved = false;
     private boolean mObjective2IsSolved = false;

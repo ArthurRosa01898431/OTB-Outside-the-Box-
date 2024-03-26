@@ -47,13 +47,25 @@
         android:id="@+id/puzzleSelectorMediumFragment"
         android:name="com.example.otb.puzzleSelectorMediumFragment"
         android:label="Medium Puzzle Selector"
-        tools:layout="@layout/puzzle_selector_medium_fragment"/>
+        tools:layout="@layout/puzzle_selector_medium_fragment" >
+
+        <action
+            android:id="@+id/action_puzzleSelectorMediumFragment_to_QR_puzzle_medium"
+            app:destination="@+id/QR_puzzle_medium_puzzlefragment">
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/puzzleSelectorHardFragment"
         android:name="com.example.otb.puzzleSelectorHardFragment"
         android:label="Hard Puzzle Selector"
-        tools:layout="@layout/puzzle_selector_hard_fragment"/>
+        tools:layout="@layout/puzzle_selector_hard_fragment">
+
+        <action
+            android:id="@+id/action_puzzleSelectorHardFragment_to_file_puzzle_hard"
+            app:destination="@+id/file_puzzle_hard_puzzlefragment">
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/brightness_puzzle_easy_puzzle_fragment"
@@ -62,5 +74,16 @@
     <fragment
         android:id="@+id/light_puzzle_easy_puzzle_fragment"
         android:name="com.example.otb.puzzle2FragmentImpl" />
+
+    <fragment
+        android:id="@+id/file_puzzle_hard_puzzlefragment"
+        android:name="com.example.otb.puzzle2FragmentImpl"
+        android:label="Puzzle 2" />
+
+    <fragment
+        android:id="@+id/QR_puzzle_medium_puzzlefragment"
+        android:name="com.example.otb.puzzle1MediumFragmentImpl"
+        android:label="Puzzle 1 Medium " />
+
 
 </navigation>
