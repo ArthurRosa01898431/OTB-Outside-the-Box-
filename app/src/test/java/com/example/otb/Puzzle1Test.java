@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 
 public class Puzzle1Test {
-    private final puzzle1FragmentMock mFragment = new puzzle1FragmentMock();
+    private final EasyPuzzle1FragmentMock mFragment = new EasyPuzzle1FragmentMock();
 
     @Test
     public void canPuzzle1BeSolved() {

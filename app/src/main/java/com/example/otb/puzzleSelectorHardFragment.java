@@ -12,7 +12,6 @@ import androidx.navigation.Navigation;
 
 import com.example.otb.databinding.PuzzleSelectorHardFragmentBinding;
 
-
 /**
  * Fragment that shows (Easy, Medium, Hard) difficulty puzzles.
  */
@@ -36,9 +35,9 @@ public class puzzleSelectorHardFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        reflectAllHardPuzzlesDataOnUI();
+        reflectDataOnUISelectorHard();
 
-        mBinding.puzzle2Objective1.setOnClickListener(new View.OnClickListener() {
+        mBinding.hardPuzzle1Objective1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // obtain a NavController and navigate
@@ -48,29 +47,16 @@ public class puzzleSelectorHardFragment extends Fragment {
 
     }
 
-    public void reflectAllHardPuzzlesDataOnUI() {
-        int[] puzzleIds = {2}; //  add more ids to array based number of actual puzzle IDs.
-        for (int puzzleId : puzzleIds) {
-            reflectDataOnUISelectorHard(puzzleId);
-        }
-    }
-
-    public void reflectDataOnUISelectorHard(int puzzleId) {
-        mDDHelper.reflectDataOnUI(puzzleId, "Hard", objectiveNumber -> {
-            // Dynamically trigger animations based on puzzleId and objectiveNumber
-            triggerAnimationForObjective(puzzleId, objectiveNumber);
+    public void reflectDataOnUISelectorHard() {
+        mDDHelper.reflectDataOnUI(-1, "Hard", objectiveNumber -> {
+            // Dynamically trigger animations based objectiveNumber
+            switch (objectiveNumber) {
+                case 1:
+                    mBinding.hardPuzzle1Objective1.setBackgroundResource(R.drawable.blink88);
+                    break;
+                default:
+                    break;
+            }
         });
-    }
-    private void triggerAnimationForObjective(int puzzleId, int objectiveNumber) {
-        switch (puzzleId) {
-            case 2:
-            // 2 represents the id, so with the file puzzle now being moved to hard, just change the id number with the case
-                if (objectiveNumber == 1)
-                    mBinding.puzzle2Objective1.setBackgroundResource(R.drawable.blink88);
-                break;
-            // put more cases here for more hard puzzles
-            default:
-                break;
-        }
     }
 }

@@ -41,16 +41,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int howManyPuzzleCompleted(final String difficulty) {
-        // Assuming you know the range of puzzle IDs. If not, this could be dynamically fetched from the database.
+        final Cursor cursor = getPuzzleData(-1 ,difficulty);
+        boolean easy_puzzle1_objective1Completed = false;
+        boolean easy_puzzle1_objective2Completed = false;
+        boolean easy_puzzle2_objective1Completed = false;
+        boolean easy_puzzle2_objective2Completed = false;
+
         int totalCompleted = 0;
-        int[] puzzleIds = {1, 2}; // Example: If you have two puzzles. Expand this as needed.
 
-        for (int puzzleId : puzzleIds) {
-            if (isPuzzleCompleted(puzzleId, difficulty)) {
-                totalCompleted++;
+        if (cursor != null && cursor.getCount() > 0) {
+            switch(difficulty) {
+                case "Easy":
+                    while (cursor.moveToNext()) {
+                        @SuppressLint("Range") int objNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
+                        if (objNumber == 1) {
+                            easy_puzzle1_objective1Completed = true;
+                        } else if (objNumber == 2) {
+                            easy_puzzle1_objective2Completed = true;
+                        } else if (objNumber == 3) {
+                            easy_puzzle2_objective1Completed = true;
+                        } else if (objNumber == 4) {
+                            easy_puzzle2_objective2Completed = true;
+                        }
+                    }
+                    if (easy_puzzle1_objective1Completed && easy_puzzle1_objective2Completed) {
+                        totalCompleted++;
+                    }
+
+                    if (easy_puzzle2_objective1Completed && easy_puzzle2_objective2Completed) {
+                        totalCompleted++;
+                    }
+                    break;
+                case "Medium":
+                    while (cursor.moveToNext()) {
+                        @SuppressLint("Range") int objNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
+                        if (objNumber == 1) {
+                            totalCompleted++;
+                        }
+                    }
+                    break;
+                case "Hard":
+                    while (cursor.moveToNext()) {
+                        @SuppressLint("Range") int objNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
+                        if (objNumber == 1) {
+                            totalCompleted++;
+                        }
+                    }
+                    break;
+                default:
+                    break;
             }
+            cursor.close();
         }
-
         return totalCompleted;
     }
 
@@ -71,27 +113,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return found;
     }
 
-
-    public boolean isPuzzleCompleted(int puzzleId, String difficulty) {
-        Cursor cursor = getPuzzleData(puzzleId, difficulty);
-        HashSet<Integer> completedObjectives = new HashSet<>();
-        // hashset ensures uniqueness between completedObjectives between each puzzle without having to worry about duplicates
-        // when adding objectives it will add and store one number into the database
-        // so this will check through all the returned rows and will check the size of the hash which will match the total number of objectives
-
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                int objNumber = cursor.getInt(cursor.getColumnIndexOrThrow("obj_number"));
-                completedObjectives.add(objNumber);
-            }
-            while (cursor.moveToNext());
-            cursor.close();
-        }
-
-        int totalObjectives = getTotalObjectivesForPuzzle(puzzleId, difficulty);
-
-        return completedObjectives.size() == totalObjectives;
-    }
 
 
     // THIS NEEDS TO CHANGE TO INCLUDE THE NEW PUZZLE FOR MEDIUM DIFFICULTY. ASK ARTHUR ABOUT THIS

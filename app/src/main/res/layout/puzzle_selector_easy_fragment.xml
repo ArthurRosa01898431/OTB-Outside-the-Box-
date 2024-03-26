@@ -9,40 +9,40 @@
 
 
     <ImageButton
-        android:id="@+id/puzzle1_Objective1"
+        android:id="@+id/easy_puzzle1_Objective1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/blink00"
-        android:backgroundTint="@color/puzzle1"
+        android:backgroundTint="@color/easy_puzzle1"
         app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle1Selector_vertical2"
         app:layout_constraintStart_toStartOf="@+id/guideline_puzzle1Selector_vertical1"
         app:layout_constraintTop_toTopOf="@+id/guideline_puzzle1Selector_horizontal1" />
 
     <ImageButton
-        android:id="@+id/puzzle1_Objective2"
+        android:id="@+id/easy_puzzle1_Objective2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/blink00"
-        android:backgroundTint="@color/puzzle1"
+        android:backgroundTint="@color/easy_puzzle1"
         app:layout_constraintBottom_toTopOf="@+id/guideline_puzzle1Selector_horizontal2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle1Selector_vertical2"
         app:layout_constraintStart_toStartOf="@+id/guideline_puzzle1Selector_vertical1" />
 
     <ImageButton
-        android:id="@+id/puzzle2_Objective1"
+        android:id="@+id/easy_puzzle2_Objective3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/blink00"
-        android:backgroundTint="@color/puzzle2"
+        android:backgroundTint="@color/easy_puzzle2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle2Selector_vertical1"
         app:layout_constraintTop_toTopOf="@+id/guideline_puzzle2Selector_horizontal1" />
 
     <ImageButton
-        android:id="@+id/puzzle2_Objective2"
+        android:id="@+id/easy_puzzle2_Objective4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/blink00"
-        android:backgroundTint="@color/puzzle2"
+        android:backgroundTint="@color/easy_puzzle2"
         app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle1Selector_vertical2"
         app:layout_constraintStart_toStartOf="@+id/guideline_puzzle1Selector_vertical1"
         app:layout_constraintTop_toTopOf="@+id/guideline_puzzle2Selector_horizontal1" />

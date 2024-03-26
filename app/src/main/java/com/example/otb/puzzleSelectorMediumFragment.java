@@ -37,9 +37,11 @@ public class puzzleSelectorMediumFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        reflectAllMediumPuzzlesDataOnUI();
 
-        mBinding.puzzle1MediumObjective1.setOnClickListener(new View.OnClickListener() {
+        reflectDataOnUISelectorMedium();
+
+
+        mBinding.mediumPuzzle1Objective1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // obtain a NavController and navigate
@@ -49,29 +51,17 @@ public class puzzleSelectorMediumFragment extends Fragment {
 
     }
 
-    public void reflectAllMediumPuzzlesDataOnUI() {
-        int[] puzzleIds = {1}; //  add more ids to array based number of actual puzzle IDs.
-        for (int puzzleId : puzzleIds) {
-            reflectDataOnUISelectorMedium(puzzleId);
-        }
-    }
-
-    public void reflectDataOnUISelectorMedium(int puzzleId) {
-        mDDHelper.reflectDataOnUI(puzzleId, "Medium", objectiveNumber -> {
-            // Dynamically trigger animations based on puzzleId and objectiveNumber
-            triggerAnimationForObjective(puzzleId, objectiveNumber);
+    public void reflectDataOnUISelectorMedium() {
+        mDDHelper.reflectDataOnUI(-1, "Medium", objectiveNumber -> {
+            // Dynamically trigger animations based objectiveNumber
+            switch (objectiveNumber) {
+                case 1:
+                    mBinding.mediumPuzzle1Objective1.setBackgroundResource(R.drawable.blink88);
+                    break;
+                default:
+                    break;
+            }
         });
     }
-    private void triggerAnimationForObjective(int puzzleId, int objectiveNumber) {
-        switch (puzzleId) {
-            case 1:
-                // 1 represents the id, representing the medium puzzle
-                if (objectiveNumber == 1)
-                    mBinding.puzzle1MediumObjective1.setBackgroundResource(R.drawable.blink88);
-                break;
-            // put more cases here for more hard puzzles
-            default:
-                break;
-        }
-    }
 }
+

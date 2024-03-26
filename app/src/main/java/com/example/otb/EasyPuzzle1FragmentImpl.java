@@ -10,21 +10,21 @@ import android.provider.Settings;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.otb.databinding.PuzzleFragment1Binding;
+import com.example.otb.databinding.EasyPuzzle1FragmentBinding;
 
-public class puzzle1FragmentImpl extends Fragment implements puzzle1Fragment {
+public class EasyPuzzle1FragmentImpl extends Fragment implements EasyPuzzle1Fragment {
 
     private final hintFragment mHintFragment = new hintFragment();
     private  DatabaseHelper mDDHelper;
 
-    private final puzzle1LogicHandler mHandler = new puzzle1LogicHandler(this);
+    private final EasyPuzzle1LogicHandler mHandler = new EasyPuzzle1LogicHandler(this);
 
-    private PuzzleFragment1Binding mBinding;
+    private EasyPuzzle1FragmentBinding mBinding;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mBinding = PuzzleFragment1Binding.inflate(inflater,
+        mBinding = EasyPuzzle1FragmentBinding.inflate(inflater,
                 container, false);
 
         View view = mBinding.getRoot();
@@ -68,7 +68,7 @@ public class puzzle1FragmentImpl extends Fragment implements puzzle1Fragment {
 
 
     @Override
-    public void puzzle1Animation(int objectiveNumber) {
+    public void easyPuzzle1Animation(int objectiveNumber) {
         switch (objectiveNumber) {
             case 1:
                 if (!mDDHelper.isObjectiveNumberInDatabase ("Easy", 1, 1)) {

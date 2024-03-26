@@ -69,21 +69,19 @@
 
     <fragment
         android:id="@+id/brightness_puzzle_easy_puzzle_fragment"
-        android:name="com.example.otb.puzzle1FragmentImpl" />
+        android:name="com.example.otb.EasyPuzzle1FragmentImpl" />
 
     <fragment
         android:id="@+id/light_puzzle_easy_puzzle_fragment"
-        android:name="com.example.otb.puzzle2FragmentImpl" />
+        android:name="com.example.otb.EasyPuzzle2FragmentImpl" />
 
     <fragment
         android:id="@+id/file_puzzle_hard_puzzlefragment"
-        android:name="com.example.otb.puzzle2FragmentImpl"
-        android:label="Puzzle 2" />
+        android:name="com.example.otb.HardPuzzle1FragmentImpl" />
 
     <fragment
         android:id="@+id/QR_puzzle_medium_puzzlefragment"
-        android:name="com.example.otb.puzzle1MediumFragmentImpl"
-        android:label="Puzzle 1 Medium " />
+        android:name="com.example.otb.MediumPuzzle1FragmentImpl" />
 
 
 </navigation>

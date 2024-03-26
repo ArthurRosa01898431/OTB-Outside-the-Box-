@@ -11,8 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.example.otb.databinding.DifficultyMenuFragmentBinding;
-import com.example.otb.databinding.PuzzleFragment1Binding;
 import com.example.otb.databinding.PuzzleSelectorEasyFragmentBinding;
 
 
@@ -35,14 +33,14 @@ public class puzzleSelectorEasyFragment extends Fragment {
 
         reflectDataOnUISelectorEasy();
 
-        mBinding.puzzle1Objective1.setOnClickListener(new View.OnClickListener() {
+        mBinding.easyPuzzle1Objective1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // obtain a NavController and navigate
                 Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorEasyFragment_to_brightness_puzzle_easy);
             }
         });
-        mBinding.puzzle1Objective2.setOnClickListener(new View.OnClickListener() {
+        mBinding.easyPuzzle1Objective2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // obtain a NavController and navigate
@@ -50,14 +48,14 @@ public class puzzleSelectorEasyFragment extends Fragment {
             }
         });
 
-        mBinding.puzzle2Objective1.setOnClickListener(new View.OnClickListener() {
+        mBinding.easyPuzzle2Objective3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // obtain a NavController and navigate
                 Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorEasyFragment_to_light_puzzle_easy);
             }
         });
-        mBinding.puzzle2Objective2.setOnClickListener(new View.OnClickListener() {
+        mBinding.easyPuzzle2Objective4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // obtain a NavController and navigate
@@ -77,10 +75,16 @@ public class puzzleSelectorEasyFragment extends Fragment {
         mDDHelper.reflectDataOnUI(-1, "Easy", (int objectiveNumber) -> {
             switch (objectiveNumber) {
                 case 1:
-                    mBinding.puzzle1Objective1.setBackgroundResource(R.drawable.blink88);
+                    mBinding.easyPuzzle1Objective1.setBackgroundResource(R.drawable.blink88);
                     break;
                 case 2:
-                    mBinding.puzzle1Objective2.setBackgroundResource(R.drawable.blink88);
+                    mBinding.easyPuzzle1Objective2.setBackgroundResource(R.drawable.blink88);
+                    break;
+                case 3:
+                    mBinding.easyPuzzle2Objective3.setBackgroundResource(R.drawable.blink88);
+                    break;
+                case 4:
+                    mBinding.easyPuzzle2Objective4.setBackgroundResource(R.drawable.blink88);
                     break;
                 // Add more cases as needed
                 default:

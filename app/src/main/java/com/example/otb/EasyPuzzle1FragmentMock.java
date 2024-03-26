@@ -1,19 +1,19 @@
 package com.example.otb;
 
-public class puzzle1FragmentMock implements puzzle1Fragment {
+public class EasyPuzzle1FragmentMock implements EasyPuzzle1Fragment {
 
-    private final puzzle1LogicHandler mHandler;
+    private final EasyPuzzle1LogicHandler mHandler;
 
-    public puzzle1FragmentMock() {
+    public EasyPuzzle1FragmentMock() {
         // Make sure that puzzle1LogicHandler can accept puzzle1Fragment or its implementer
-        mHandler = new puzzle1LogicHandler(this);
+        mHandler = new EasyPuzzle1LogicHandler(this);
     }
 
     private int mBrightness = 0;
     private boolean mObjective1IsSolved = false;
     private boolean mObjective2IsSolved = false;
     @Override
-    public void puzzle1Animation(int objectiveNumber) {
+    public void easyPuzzle1Animation(int objectiveNumber) {
         switch (objectiveNumber) {
             case 1:
                 mObjective1IsSolved = true;

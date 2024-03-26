@@ -1,18 +1,17 @@
 package com.example.otb;
 
 import android.os.Handler;
-import android.util.Log;
 
-public class puzzle1LogicHandler {
+public class EasyPuzzle1LogicHandler {
     private static final int BRIGHTNESS_MAX_THRESHOLD = 220;
     private static final int BRIGHTNESS_MIN_THRESHOLD = 10;
-    private final puzzle1Fragment mFragment;
+    private final EasyPuzzle1Fragment mFragment;
     private int mPreviousBrightness = -1;
 
     private brightnessThread mBrightnessThread;
 
 
-    puzzle1LogicHandler(puzzle1Fragment fragment) {
+    EasyPuzzle1LogicHandler(EasyPuzzle1Fragment fragment) {
         mFragment = fragment;
     }
 
@@ -28,11 +27,11 @@ public class puzzle1LogicHandler {
         int brightness = mFragment.getAndroidBrightness();
 
         if (brightness > BRIGHTNESS_MAX_THRESHOLD) {
-            mFragment.puzzle1Animation(1);
+            mFragment.easyPuzzle1Animation(1);
         }
 
         if (brightness < BRIGHTNESS_MIN_THRESHOLD) {
-            mFragment.puzzle1Animation(2);
+            mFragment.easyPuzzle1Animation(2);
         }
     }
     private class brightnessThread extends Thread {

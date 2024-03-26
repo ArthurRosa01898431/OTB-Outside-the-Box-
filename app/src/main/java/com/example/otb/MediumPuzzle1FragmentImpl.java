@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.otb.databinding.MediumPuzzle1FragmentBinding;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -20,16 +21,14 @@ import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 
-import com.example.otb.databinding.PuzzleMediumFragment1Binding;
-
-public class puzzle1MediumFragmentImpl extends Fragment implements puzzle1MediumFragment{
+public class MediumPuzzle1FragmentImpl extends Fragment implements MediumPuzzle1Fragment {
 
     // keep these two, give the hint fragment and the database helper
     private final hintFragment mHintFragment = new hintFragment();
     private  DatabaseHelper mDDHelper;
 
-    private final puzzle1MediumLogicHandler mHandler = new puzzle1MediumLogicHandler(this);
-    private PuzzleMediumFragment1Binding mBinding;
+    private final MediumPuzzle1LogicHandler mHandler = new MediumPuzzle1LogicHandler(this);
+    private MediumPuzzle1FragmentBinding mBinding;
 
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
@@ -38,12 +37,12 @@ public class puzzle1MediumFragmentImpl extends Fragment implements puzzle1Medium
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mBinding = PuzzleMediumFragment1Binding.inflate(inflater, container, false);
+        mBinding = MediumPuzzle1FragmentBinding.inflate(inflater, container, false);
         View view = mBinding.getRoot();
         setUpHintFragment();
         mDDHelper = new DatabaseHelper(getContext());
 
-        mBinding.objective1Puzzle1Medium.setOnLongClickListener(v ->  {
+        mBinding.mediumPuzzle1Objective1.setOnLongClickListener(v ->  {
             if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted by the user to access Camera
                 new IntentIntegrator(getActivity()).initiateScan();
@@ -54,7 +53,7 @@ public class puzzle1MediumFragmentImpl extends Fragment implements puzzle1Medium
             return true;
         });
 
-        mBinding.objective1Puzzle1Medium.setOnClickListener(v -> {
+        mBinding.mediumPuzzle1Objective1.setOnClickListener(v -> {
             mHintFragment.toggleHintDisplay(1);
             mHintFragment.show(requireActivity().getSupportFragmentManager(), "hintFragment");
 
@@ -76,7 +75,7 @@ public class puzzle1MediumFragmentImpl extends Fragment implements puzzle1Medium
                 Toast.makeText(getActivity(), "Scan was cancelled.", Toast.LENGTH_LONG).show();
             } else {
                 Log.d("QRCodeScanner", "Scanned: " + result.getContents());
-                puzzle1MediumAnimation(1);
+                mediumPuzzle1Animation(1);
             }
         }
     }
@@ -116,23 +115,6 @@ public class puzzle1MediumFragmentImpl extends Fragment implements puzzle1Medium
         reflectDataOnUI_Puzzle1Medium(1);
     }
 
-
-    public void puzzle1MediumAnimation(int objectiveNumber) {
-        Log.d("Puzzle1Medium", "triggerFileSelection called.");
-        switch (objectiveNumber) {
-            case 1:
-                if (!mDDHelper.isObjectiveNumberInDatabase("Medium", 1, 1)) {
-                    mDDHelper.insertData(1, objectiveNumber, "Medium");
-                    animation(getActivity(), 1);
-                }
-                break;
-
-            default:
-                break;
-        }
-    }
-
-
     private void setUpHintFragment() {
         String[] hintAllObjText = getResources().getStringArray(R.array.Puzzle1MediumAllObjectives);
         String[] hintObj1Text = getResources().getStringArray(R.array.Puzzle1MediumObjective1);
@@ -147,11 +129,25 @@ public class puzzle1MediumFragmentImpl extends Fragment implements puzzle1Medium
         mDDHelper.reflectDataOnUI(puzzleId, "", (int objectiveNumber) -> {
             switch (objectiveNumber) {
                 case 1:
-                    mBinding.objective1Puzzle1Medium.setBackgroundResource(R.drawable.blink88);
+                    mBinding.mediumPuzzle1Objective1.setBackgroundResource(R.drawable.blink88);
                     break;
                 // Add more cases as needed that represent objectives
                 default:
             }
         });
+    }
+
+    @Override
+    public void mediumPuzzle1Animation(int objectiveNumber) {
+        switch (objectiveNumber) {
+            case 1:
+                if (!mDDHelper.isObjectiveNumberInDatabase("Medium", 1, 1)) {
+                    mDDHelper.insertData(1, objectiveNumber, "Medium");
+                    animation(getActivity(), 1, 1, "medium");
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
