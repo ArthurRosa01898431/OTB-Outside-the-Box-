@@ -29,10 +29,12 @@ import android.widget.ImageButton;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
 interface IntRunnable {
     void run(int intValue);
 }
-
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     // Top Bar.
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar);
 
+        mDDHelper = new DatabaseHelper(this);
+
         setSupportActionBar(mToolbar);
 
         // Get a reference to the navigation controller from navigation host.
@@ -66,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
         // Link “AppBarConfigtureation” to the toolbar,
         NavigationUI.setupWithNavController(mToolbar, navController,
                 appBarConfiguration);
-
-        mDDHelper = new DatabaseHelper(this);
     }
 
     @Override

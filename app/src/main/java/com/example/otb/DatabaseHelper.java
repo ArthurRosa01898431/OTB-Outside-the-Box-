@@ -204,10 +204,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // needed to add since the database wasn't being upgraded correctly
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 2) {
-            // If the column doesn't exist in version 1, add it in version 2.
-            db.execSQL("ALTER TABLE myTable ADD COLUMN obj_number INTEGER DEFAULT 0");
-        }
+//        if (oldVersion < 2) {
+//            // If the column doesn't exist in version 1, add it in version 2.
+//            db.execSQL("ALTER TABLE myTable ADD COLUMN obj_number INTEGER DEFAULT 0");
+//        }
         // Handle further upgrades
     }
 

@@ -45,7 +45,6 @@
         app:layout_constraintTop_toTopOf="@+id/horizontal_guideline2"
         android:src="@drawable/hard"
         android:contentDescription="@string/hard_difficulty"/>
-
     <TextView
         android:id="@+id/easyPuzzleComplete"
         style="@style/puzzleCounter"

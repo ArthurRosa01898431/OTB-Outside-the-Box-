@@ -26,10 +26,10 @@
         <item>Light</item>
     </string-array>
     <string-array name="EasyPuzzle2HintsObjective1">
-        <item>Cave Emoji</item>
+        <item>I can\'t see!</item>
     </string-array>
     <string-array name="EasyPuzzle2HintsObjective2">
-        <item>Lamp Emoji</item>
+        <item>Ahh my eyes!</item>
     </string-array>
 
     <string-array name="Puzzle2HintsAllObjectives">
