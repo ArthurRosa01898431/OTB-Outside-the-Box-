@@ -63,6 +63,14 @@ public class puzzleSelectorEasyFragment extends Fragment {
             }
         });
 
+        mBinding.easyPuzzle3Objective5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // obtain a NavController and navigate
+                Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorEasyFragment_to_charger_puzzle_easy);
+            }
+        });
+
         return view;
     }
 
@@ -86,10 +94,12 @@ public class puzzleSelectorEasyFragment extends Fragment {
                 case 4:
                     mBinding.easyPuzzle2Objective4.setImageResource(R.drawable.filled);
                     break;
+                case 5:
+                    mBinding.easyPuzzle3Objective5.setImageResource(R.drawable.filled);
+                    break;
                 // Add more cases as needed
                 default:
             }
-
         });
     }
 }

@@ -11,6 +11,7 @@
     <color name="pink">#FFC0CB</color>
     <color name="easy_puzzle1">#DE083B</color>
     <color name="easy_puzzle2">#FFC837</color>
+    <color name="easy_puzzle3">#0000FF</color>
     <color name="medium_puzzle1">#FFC563</color>
     <color name="hard_puzzle1">#FFC991</color>
 </resources>

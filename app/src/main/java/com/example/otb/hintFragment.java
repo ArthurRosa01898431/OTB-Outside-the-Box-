@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,13 +59,11 @@ public class hintFragment extends BottomSheetDialogFragment {
         }
     }
 
-    /*
-        @int objectiveNumber - The Objective Number that should be displayed.
-
-        Allows the hints for the objectiveNumber to be displayed.
-     */
-    public void toggleHintDisplay(int objectiveNumber) {
-        mCurrentObjectiveHintDisplayed = objectiveNumber;
-        mHintModel.get(objectiveNumber).toggleShouldBeDisplayed();
+    public void showHintFragment(FragmentManager fragmentManager, int hintObjectiveNumber) {
+        if (mCurrentObjectiveHintDisplayed == null) {
+            show(fragmentManager, "hintFragment");
+            mCurrentObjectiveHintDisplayed = hintObjectiveNumber;
+            mHintModel.get(hintObjectiveNumber).toggleShouldBeDisplayed();
+        }
     }
 }

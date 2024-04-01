@@ -64,7 +64,7 @@ public class difficultyMenuFragment extends Fragment {
 
     private void reflectDataBaseToUIPuzzleCompleted() {
         // Get all easy difficulty data in database.
-        mBinding.easyPuzzleComplete.setText(mDDHelper.howManyPuzzleCompleted("Easy") + "/2");
+        mBinding.easyPuzzleComplete.setText(mDDHelper.howManyPuzzleCompleted("Easy") + "/3");
 
         // Get all medium difficulty data in database.
         mBinding.mediumPuzzleComplete.setText(mDDHelper.howManyPuzzleCompleted("Medium") + "/1");

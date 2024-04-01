@@ -56,7 +56,7 @@ public class puzzleSelectorMediumFragment extends Fragment {
             // Dynamically trigger animations based objectiveNumber
             switch (objectiveNumber) {
                 case 1:
-                    mBinding.mediumPuzzle1Objective1.setBackgroundResource(R.drawable.blink88);
+                    mBinding.mediumPuzzle1Objective1.setImageResource(R.drawable.filled);
                     break;
                 default:
                     break;

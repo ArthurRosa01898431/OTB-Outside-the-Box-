@@ -54,8 +54,8 @@ public class MediumPuzzle1FragmentImpl extends Fragment implements MediumPuzzle1
         });
 
         mBinding.mediumPuzzle1Objective1.setOnClickListener(v -> {
-            mHintFragment.toggleHintDisplay(1);
-            mHintFragment.show(requireActivity().getSupportFragmentManager(), "hintFragment");
+            mHintFragment.showHintFragment(requireActivity().getSupportFragmentManager(), 1);
+
 
         });
 

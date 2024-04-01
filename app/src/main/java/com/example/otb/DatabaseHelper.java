@@ -62,6 +62,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             easy_puzzle2_objective1Completed = true;
                         } else if (objNumber == 4) {
                             easy_puzzle2_objective2Completed = true;
+                        } else if (objNumber == 5) {
+                            totalCompleted++;
                         }
                     }
                     if (easy_puzzle1_objective1Completed && easy_puzzle1_objective2Completed) {
@@ -212,42 +214,3 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 }
-
-
-
-
-
-
-    /*
-
-    not in use cause it assumes there was only 1 easy puzzle
-    public int howManyPuzzleCompleted(final String difficulty) {
-        final Cursor cursor = getPuzzleData(-1 ,difficulty);
-        boolean puzzle1_objective1Completed = false;
-        boolean puzzle1_objective2Completed = false;
-        boolean puzzle2_objective1Completed = false;
-
-        int totalCompleted = 0;
-
-        if (cursor != null && cursor.getCount() > 0) {
-            switch(difficulty) {
-                case "Easy":
-                    while (cursor.moveToNext()) {
-                        @SuppressLint("Range") int objNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
-                        if (objNumber == 1) {
-                            puzzle1_objective1Completed = true;
-                        } else if (objNumber == 2) {
-                            puzzle1_objective2Completed = true;
-                        }
-                    }
-                    if (puzzle1_objective1Completed && puzzle1_objective2Completed) {
-                        totalCompleted++;
-                    }
-            }
-            cursor.close();
-        }
-        return totalCompleted;
-    }
-
-
-     */

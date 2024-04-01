@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.otb.databinding.EasyPuzzle1FragmentBinding;
 
 public class EasyPuzzle1FragmentImpl extends Fragment implements EasyPuzzle1Fragment {
-
+    private static final int PUZZLE_ID = 1;
     private final hintFragment mHintFragment = new hintFragment();
     private  DatabaseHelper mDDHelper;
 
@@ -35,16 +35,16 @@ public class EasyPuzzle1FragmentImpl extends Fragment implements EasyPuzzle1Frag
         mBinding.easyPuzzle1Objective1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHintFragment.toggleHintDisplay(1);
-                mHintFragment.show(requireActivity().getSupportFragmentManager(), "hintFragment");
+                mHintFragment.showHintFragment(requireActivity().getSupportFragmentManager(), 2);
+
             }
         });
 
         mBinding.easyPuzzle1Objective2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHintFragment.toggleHintDisplay(2);
-                mHintFragment.show(requireActivity().getSupportFragmentManager(), "hintFragment");
+                mHintFragment.showHintFragment(requireActivity().getSupportFragmentManager(),  2);
+
             }
         });
 
@@ -62,28 +62,16 @@ public class EasyPuzzle1FragmentImpl extends Fragment implements EasyPuzzle1Frag
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        reflectDataOnUI_Puzzle1(1);
+        reflectDataOnUI_Puzzle1();
     }
 
 
 
     @Override
     public void easyPuzzle1Animation(int objectiveNumber) {
-        switch (objectiveNumber) {
-            case 1:
-                if (!mDDHelper.isObjectiveNumberInDatabase ("Easy", 1, 1)) {
-                    mDDHelper.insertData(1, objectiveNumber, "Easy");
-                    animation(getActivity(), 1, 1, "easy");
-                }
-                break;
-            case 2:
-                if (!mDDHelper.isObjectiveNumberInDatabase ("Easy", 1, 2)) {
-                    mDDHelper.insertData(1, objectiveNumber, "Easy");
-                    animation(getActivity(), 2, 1, "easy");
-                }
-                break;
-            default:
-                break;
+        if (!mDDHelper.isObjectiveNumberInDatabase ("Easy", PUZZLE_ID, objectiveNumber)) {
+            mDDHelper.insertData(PUZZLE_ID, objectiveNumber, "Easy");
+            animation(getActivity(), objectiveNumber, PUZZLE_ID, "easy");
         }
     }
 
@@ -113,9 +101,9 @@ public class EasyPuzzle1FragmentImpl extends Fragment implements EasyPuzzle1Frag
 
         @param puzzleId - The puzzle ID to check in the database.
      */
-    public void reflectDataOnUI_Puzzle1(final int puzzleId) {
+    public void reflectDataOnUI_Puzzle1() {
         // Main Activity gets data from the database and each puzzle will have it's own lambda.
-        mDDHelper.reflectDataOnUI(puzzleId, "", (int objectiveNumber) -> {
+        mDDHelper.reflectDataOnUI(PUZZLE_ID, "", (int objectiveNumber) -> {
             switch (objectiveNumber) {
                 case 1:
                     mBinding.easyPuzzle1Objective1.setBackgroundResource(R.drawable.blink88);

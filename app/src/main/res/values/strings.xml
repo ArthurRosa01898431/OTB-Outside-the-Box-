@@ -32,6 +32,13 @@
         <item>Ahh my eyes!</item>
     </string-array>
 
+    <string-array name="EasyPuzzle3HintsAllObjectives">
+        <item>Battery</item>
+    </string-array>
+    <string-array name="EasyPuzzle3HintsObjective1">
+        <item>Plug me in!</item>
+    </string-array>
+
     <string-array name="Puzzle2HintsAllObjectives">
         <item>Where Are Things Stored</item>
     </string-array>

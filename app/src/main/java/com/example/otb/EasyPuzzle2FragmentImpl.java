@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class EasyPuzzle2FragmentImpl extends Fragment implements EasyPuzzle2Fragment {
-    public static final int PUZZLE_ID = 2;
+    private static final int PUZZLE_ID = 2;
     private final hintFragment mHintFragment = new hintFragment();
     private  DatabaseHelper mDDHelper;
     private EasyPuzzle2ViewModel mViewModel;
@@ -51,16 +51,14 @@ public class EasyPuzzle2FragmentImpl extends Fragment implements EasyPuzzle2Frag
         mBinding.easyPuzzle2Objective3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHintFragment.toggleHintDisplay(1);
-                mHintFragment.show(requireActivity().getSupportFragmentManager(), "hintFragment");
+                mHintFragment.showHintFragment(requireActivity().getSupportFragmentManager(), 1);
             }
         });
 
         mBinding.easyPuzzle2Objective4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHintFragment.toggleHintDisplay(2);
-                mHintFragment.show(requireActivity().getSupportFragmentManager(), "hintFragment");
+                mHintFragment.showHintFragment(requireActivity().getSupportFragmentManager(), 2);
             }
         });
 
@@ -77,7 +75,7 @@ public class EasyPuzzle2FragmentImpl extends Fragment implements EasyPuzzle2Frag
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        reflectDataOnUI_Puzzle2(2);
+        reflectDataOnUI_Puzzle2();
     }
 
     @Override
@@ -104,9 +102,9 @@ public class EasyPuzzle2FragmentImpl extends Fragment implements EasyPuzzle2Frag
 
         @param puzzleId - The puzzle ID to check in the database.
      */
-    public void reflectDataOnUI_Puzzle2(final int puzzleId) {
+    public void reflectDataOnUI_Puzzle2() {
         // Main Activity gets data from the database and each puzzle will have it's own lambda.
-        mDDHelper.reflectDataOnUI(puzzleId, "", (int objectiveNumber) -> {
+        mDDHelper.reflectDataOnUI(PUZZLE_ID, "", (int objectiveNumber) -> {
             switch (objectiveNumber) {
                 case 3:
                     mBinding.easyPuzzle2Objective3.setBackgroundResource(R.drawable.blink88);

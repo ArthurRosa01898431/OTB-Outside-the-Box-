@@ -52,7 +52,7 @@ public class puzzleSelectorHardFragment extends Fragment {
             // Dynamically trigger animations based objectiveNumber
             switch (objectiveNumber) {
                 case 1:
-                    mBinding.hardPuzzle1Objective1.setBackgroundResource(R.drawable.blink88);
+                    mBinding.hardPuzzle1Objective1.setImageResource(R.drawable.filled);
                     break;
                 default:
                     break;
