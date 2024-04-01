@@ -75,16 +75,16 @@ public class puzzleSelectorEasyFragment extends Fragment {
         mDDHelper.reflectDataOnUI(-1, "Easy", (int objectiveNumber) -> {
             switch (objectiveNumber) {
                 case 1:
-                    mBinding.easyPuzzle1Objective1.setBackgroundResource(R.drawable.blink88);
+                    mBinding.easyPuzzle1Objective1.setImageResource(R.drawable.filled);
                     break;
                 case 2:
-                    mBinding.easyPuzzle1Objective2.setBackgroundResource(R.drawable.blink88);
+                    mBinding.easyPuzzle1Objective2.setImageResource(R.drawable.filled);
                     break;
                 case 3:
-                    mBinding.easyPuzzle2Objective3.setBackgroundResource(R.drawable.blink88);
+                    mBinding.easyPuzzle2Objective3.setImageResource(R.drawable.filled);
                     break;
                 case 4:
-                    mBinding.easyPuzzle2Objective4.setBackgroundResource(R.drawable.blink88);
+                    mBinding.easyPuzzle2Objective4.setImageResource(R.drawable.filled);
                     break;
                 // Add more cases as needed
                 default:

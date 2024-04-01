@@ -6,20 +6,19 @@
     android:id="@+id/puzzleSelectorHardFragment"
     android:background="@color/background">
 
-    <ImageButton
-        android:id="@+id/medium_puzzle1_Objective1"
+    <GridLayout
+        android:id="@+id/hard_selector_grid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/blink00"
-        android:backgroundTint="@color/medium_puzzle1"
-        app:layout_constraintStart_toStartOf="@+id/guideline_puzzle1Selector_vertical1"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:columnCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_puzzle1Selector_vertical1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="72dp" />
-
+        <ImageButton
+            android:id="@+id/medium_puzzle1_Objective1"
+            style="@style/mainScreenPuzzle"
+            app:tint="@color/medium_puzzle1"/>
+    </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

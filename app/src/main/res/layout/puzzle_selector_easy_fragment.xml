@@ -7,87 +7,34 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-
-    <ImageButton
-        android:id="@+id/easy_puzzle1_Objective1"
+    <GridLayout
+        android:id="@+id/easy_selector_grid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/blink00"
-        android:backgroundTint="@color/easy_puzzle1"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle1Selector_vertical2"
-        app:layout_constraintStart_toStartOf="@+id/guideline_puzzle1Selector_vertical1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_puzzle1Selector_horizontal1" />
+        android:columnCount="6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/easy_puzzle1_Objective2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/blink00"
-        android:backgroundTint="@color/easy_puzzle1"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_puzzle1Selector_horizontal2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle1Selector_vertical2"
-        app:layout_constraintStart_toStartOf="@+id/guideline_puzzle1Selector_vertical1" />
+        <ImageButton
+            android:id="@+id/easy_puzzle1_Objective1"
+            style="@style/mainScreenPuzzle"
+            app:tint="@color/easy_puzzle1" />
 
-    <ImageButton
-        android:id="@+id/easy_puzzle2_Objective3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/blink00"
-        android:backgroundTint="@color/easy_puzzle2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle2Selector_vertical1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_puzzle2Selector_horizontal1" />
+        <ImageButton
+            android:id="@+id/easy_puzzle1_Objective2"
+            style="@style/mainScreenPuzzle"
+            app:tint="@color/easy_puzzle1" />
 
-    <ImageButton
-        android:id="@+id/easy_puzzle2_Objective4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/blink00"
-        android:backgroundTint="@color/easy_puzzle2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_puzzle1Selector_vertical2"
-        app:layout_constraintStart_toStartOf="@+id/guideline_puzzle1Selector_vertical1"
-        app:layout_constraintTop_toTopOf="@+id/guideline_puzzle2Selector_horizontal1" />
+        <ImageButton
+            android:id="@+id/easy_puzzle2_Objective3"
+            style="@style/mainScreenPuzzle"
+            app:tint="@color/easy_puzzle2" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_puzzle1Selector_horizontal1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="235dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_puzzle1Selector_horizontal2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="440dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_puzzle1Selector_vertical1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="72dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_puzzle1Selector_vertical2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="222dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_puzzle2Selector_horizontal1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="180dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_puzzle2Selector_vertical1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="280dp" />
-
-
+        <ImageButton
+            android:id="@+id/easy_puzzle2_Objective4"
+            style="@style/mainScreenPuzzle"
+            app:tint="@color/easy_puzzle2" />
+    </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
