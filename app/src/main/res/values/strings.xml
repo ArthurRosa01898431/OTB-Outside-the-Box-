@@ -47,16 +47,24 @@
     </string-array>
 
 
-
     <string-array name="Puzzle1MediumAllObjectives">
         <item>The Camera is your best friend</item>
     </string-array>
     <string-array name="Puzzle1MediumObjective1">
         <item>We like Codes</item>
     </string-array>
-
-
-
+    <string-array name="Puzzle2MediumAllObjectives">
+        <item>Start looking for fruit!</item>
+    </string-array>
+    <string-array name="Puzzle2MediumObjective2">
+        <item>Take a picture of an apple.</item>
+    </string-array>
+    <string-array name="Puzzle2MediumObjective3">
+        <item>Take a picture of a banana. </item>
+    </string-array>
+    <string-array name="Puzzle2MediumObjective4">
+        <item>Take a picture of an orange.</item>
+    </string-array>
 
 
     <string name="select">Select</string>
@@ -65,5 +73,12 @@
     <string name="easy_difficulty">Easy Difficulty </string>
     <string name="medium_difficulty">Medium Difficulty</string>
     <string name="hard_difficulty">Hard Difficulty</string>
-    <string name="reset">Reset</string>
+    <string name="reset_title">Reset Game Data</string>
+    <string name="reset_button">Reset</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
+    <string name="game_summary">OTB (Outside the Box) is a puzzle game that uses your phone\'s features as solutions for puzzles. Get creative and discover the answers with subtle visual clues and hints to help with your play through.</string>
+    <string name="help_navigate_title">How to Navigate the Game:</string>
+    <string name="help_navigate_content_1">There are 3 different levels for puzzles and each puzzle has one or more objectives to solve. All puzzles are color-coded, so each objective has a color that corresponds to its puzzle. Click on an objective to start a puzzle.</string>
+    <string name="help_navigate_content_2">If you are stuck during a puzzle, click on an objective to get hints for the puzzle and the specific objective.</string>
 </resources>

@@ -13,5 +13,6 @@
     <color name="easy_puzzle2">#FFC837</color>
     <color name="easy_puzzle3">#0000FF</color>
     <color name="medium_puzzle1">#FFC563</color>
+    <color name="medium_puzzle2">#31aa52</color>
     <color name="hard_puzzle1">#FFC991</color>
 </resources>

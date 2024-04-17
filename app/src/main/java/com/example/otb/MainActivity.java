@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -75,18 +76,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_reset) {
-            resetGameData();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.onNavDestinationSelected(item, navController)
+                || super.onOptionsItemSelected(item);
     }
 
 
@@ -98,19 +95,5 @@ public class MainActivity extends AppCompatActivity {
 
         button.setBackgroundResource(R.drawable.animation);
         ((AnimationDrawable) button.getBackground()).start();
-    }
-
-    private void resetGameData() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Reset Game Data");
-        builder.setMessage("Are you sure you want to reset game data?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                mDDHelper.deleteAllData();
-            }
-        });
-        builder.setNegativeButton("No", null); // No action needed for "No" button
-        builder.show();
     }
 }

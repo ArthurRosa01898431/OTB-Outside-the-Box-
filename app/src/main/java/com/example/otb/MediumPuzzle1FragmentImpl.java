@@ -126,7 +126,7 @@ public class MediumPuzzle1FragmentImpl extends Fragment implements MediumPuzzle1
 
     public void reflectDataOnUI_Puzzle1Medium(final int puzzleId) {
         // Main Activity gets data from the database and each puzzle will have it's own lambda.
-        mDDHelper.reflectDataOnUI(puzzleId, "", (int objectiveNumber) -> {
+        mDDHelper.reflectDataOnUI(puzzleId, "Medium", (int objectiveNumber) -> {
             switch (objectiveNumber) {
                 case 1:
                     mBinding.mediumPuzzle1Objective1.setBackgroundResource(R.drawable.blink88);

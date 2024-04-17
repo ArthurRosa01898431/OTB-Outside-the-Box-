@@ -2,6 +2,43 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/helpFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/helpFragment"
+    android:padding="16dp"
+    android:background="@color/background">
 
+    <TextView
+        android:id="@+id/summaryTextView"
+        style="@style/helpContentStyle"
+        android:text="@string/game_summary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/gameDescriptionTextView"
+        style="@style/helpTitleStyle"
+        android:text="@string/help_navigate_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/summaryTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/navigateDescriptionTextView"
+        style="@style/helpContentStyle"
+        android:text="@string/help_navigate_content_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gameDescriptionTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/stuckDescriptionTextView"
+        style="@style/helpContentStyle"
+        android:text="@string/help_navigate_content_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navigateDescriptionTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

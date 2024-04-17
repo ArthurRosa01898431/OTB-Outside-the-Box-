@@ -49,6 +49,30 @@ public class puzzleSelectorMediumFragment extends Fragment {
             }
         });
 
+        mBinding.mediumPuzzle2Objective2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // obtain a NavController and navigate
+                Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorMediumFragment_to_ai_camera_puzzle_medium);
+            }
+        });
+
+        mBinding.mediumPuzzle2Objective3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // obtain a NavController and navigate
+                Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorMediumFragment_to_ai_camera_puzzle_medium);
+            }
+        });
+
+        mBinding.mediumPuzzle2Objective3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // obtain a NavController and navigate
+                Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorMediumFragment_to_ai_camera_puzzle_medium);
+            }
+        });
+
     }
 
     public void reflectDataOnUISelectorMedium() {
@@ -57,6 +81,15 @@ public class puzzleSelectorMediumFragment extends Fragment {
             switch (objectiveNumber) {
                 case 1:
                     mBinding.mediumPuzzle1Objective1.setImageResource(R.drawable.filled);
+                    break;
+                case 2:
+                    mBinding.mediumPuzzle2Objective2.setImageResource(R.drawable.filled);
+                    break;
+                case 3:
+                    mBinding.mediumPuzzle2Objective3.setImageResource(R.drawable.filled);
+                    break;
+                case 4:
+                    mBinding.mediumPuzzle2Objective4.setImageResource(R.drawable.filled);
                     break;
                 default:
                     break;

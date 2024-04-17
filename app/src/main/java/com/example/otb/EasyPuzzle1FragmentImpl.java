@@ -15,12 +15,11 @@ import com.example.otb.databinding.EasyPuzzle1FragmentBinding;
 public class EasyPuzzle1FragmentImpl extends Fragment implements EasyPuzzle1Fragment {
     private static final int PUZZLE_ID = 1;
     private final hintFragment mHintFragment = new hintFragment();
-    private  DatabaseHelper mDDHelper;
+    private DatabaseHelper mDDHelper;
 
     private final EasyPuzzle1LogicHandler mHandler = new EasyPuzzle1LogicHandler(this);
 
     private EasyPuzzle1FragmentBinding mBinding;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,7 +34,7 @@ public class EasyPuzzle1FragmentImpl extends Fragment implements EasyPuzzle1Frag
         mBinding.easyPuzzle1Objective1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mHintFragment.showHintFragment(requireActivity().getSupportFragmentManager(), 2);
+                mHintFragment.showHintFragment(requireActivity().getSupportFragmentManager(), 1);
 
             }
         });
@@ -57,15 +56,11 @@ public class EasyPuzzle1FragmentImpl extends Fragment implements EasyPuzzle1Frag
         super.onDestroy();
     }
 
-
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         reflectDataOnUI_Puzzle1();
     }
-
-
 
     @Override
     public void easyPuzzle1Animation(int objectiveNumber) {
@@ -103,7 +98,7 @@ public class EasyPuzzle1FragmentImpl extends Fragment implements EasyPuzzle1Frag
      */
     public void reflectDataOnUI_Puzzle1() {
         // Main Activity gets data from the database and each puzzle will have it's own lambda.
-        mDDHelper.reflectDataOnUI(PUZZLE_ID, "", (int objectiveNumber) -> {
+        mDDHelper.reflectDataOnUI(PUZZLE_ID, "Easy", (int objectiveNumber) -> {
             switch (objectiveNumber) {
                 case 1:
                     mBinding.easyPuzzle1Objective1.setBackgroundResource(R.drawable.blink88);
@@ -117,4 +112,3 @@ public class EasyPuzzle1FragmentImpl extends Fragment implements EasyPuzzle1Frag
         });
     }
 }
-

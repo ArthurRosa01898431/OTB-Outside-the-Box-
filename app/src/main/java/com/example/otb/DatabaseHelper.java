@@ -46,6 +46,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         boolean easy_puzzle1_objective2Completed = false;
         boolean easy_puzzle2_objective1Completed = false;
         boolean easy_puzzle2_objective2Completed = false;
+        boolean medium_puzzle2_objective2Completed = false;
+        boolean medium_puzzle2_objective3Completed = false;
+        boolean medium_puzzle2_objective4Completed = false;
 
         int totalCompleted = 0;
 
@@ -79,7 +82,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         @SuppressLint("Range") int objNumber = cursor.getInt(cursor.getColumnIndex("obj_number"));
                         if (objNumber == 1) {
                             totalCompleted++;
+                        } else if (objNumber == 2) {
+                            medium_puzzle2_objective2Completed = true;
+                        } else if (objNumber == 3) {
+                            medium_puzzle2_objective3Completed = true;
+                        } else if (objNumber == 4) {
+                            medium_puzzle2_objective4Completed = true;
                         }
+                    }
+                    if (medium_puzzle2_objective2Completed && medium_puzzle2_objective3Completed
+                            && medium_puzzle2_objective4Completed) {
+
+                        totalCompleted++;
                     }
                     break;
                 case "Hard":

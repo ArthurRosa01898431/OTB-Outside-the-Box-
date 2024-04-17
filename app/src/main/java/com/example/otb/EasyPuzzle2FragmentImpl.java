@@ -8,14 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 
 import com.example.otb.databinding.EasyPuzzle2FragmentBinding;
-
-import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -24,16 +22,14 @@ public class EasyPuzzle2FragmentImpl extends Fragment implements EasyPuzzle2Frag
     private static final int PUZZLE_ID = 2;
     private final hintFragment mHintFragment = new hintFragment();
     private  DatabaseHelper mDDHelper;
-    private EasyPuzzle2ViewModel mViewModel;
-
     private EasyPuzzle2FragmentBinding mBinding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mBinding = EasyPuzzle2FragmentBinding.inflate(inflater,
                 container, false);
 
-        mViewModel = new ViewModelProvider(getActivity()).get(EasyPuzzle2ViewModel.class);
+        EasyPuzzle2ViewModel mViewModel = new ViewModelProvider(getActivity()).get(EasyPuzzle2ViewModel.class);
 
         mViewModel.isDark().observe(getViewLifecycleOwner(), isDark -> {
             Log.d("ARTHUR", "onCreateView: " + isDark);
@@ -104,7 +100,7 @@ public class EasyPuzzle2FragmentImpl extends Fragment implements EasyPuzzle2Frag
      */
     public void reflectDataOnUI_Puzzle2() {
         // Main Activity gets data from the database and each puzzle will have it's own lambda.
-        mDDHelper.reflectDataOnUI(PUZZLE_ID, "", (int objectiveNumber) -> {
+        mDDHelper.reflectDataOnUI(PUZZLE_ID, "Easy", (int objectiveNumber) -> {
             switch (objectiveNumber) {
                 case 3:
                     mBinding.easyPuzzle2Objective3.setBackgroundResource(R.drawable.blink88);

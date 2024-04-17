@@ -67,7 +67,7 @@ public class difficultyMenuFragment extends Fragment {
         mBinding.easyPuzzleComplete.setText(mDDHelper.howManyPuzzleCompleted("Easy") + "/3");
 
         // Get all medium difficulty data in database.
-        mBinding.mediumPuzzleComplete.setText(mDDHelper.howManyPuzzleCompleted("Medium") + "/1");
+        mBinding.mediumPuzzleComplete.setText(mDDHelper.howManyPuzzleCompleted("Medium") + "/2");
 
         // Get all hard difficulty data in database.
         mBinding.hardPuzzleComplete.setText(mDDHelper.howManyPuzzleCompleted("Hard") + "/1");

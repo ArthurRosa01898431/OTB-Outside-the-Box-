@@ -96,7 +96,7 @@ public class EasyPuzzle3FragmentImpl extends Fragment {
      */
     private void reflectDataOnUI_Puzzle3() {
         // Main Activity gets data from the database and each puzzle will have it's own lambda.
-        mDDHelper.reflectDataOnUI(PUZZLE_ID, "", (int objectiveNumber) -> {
+        mDDHelper.reflectDataOnUI(PUZZLE_ID, "Easy", (int objectiveNumber) -> {
             if (objectiveNumber == 5) {
                 mBinding.easyPuzzle3Objective5.setBackgroundResource(R.drawable.blink88);
                 // Add more cases as needed

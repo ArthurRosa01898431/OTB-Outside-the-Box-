@@ -42,12 +42,15 @@ android {
 
     buildFeatures {
         compose = true
+        mlModelBinding = true
     }
 
 }
 
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
     val navVersion = "2.7.7"
 
     implementation("androidx.navigation:navigation-fragment:$navVersion")

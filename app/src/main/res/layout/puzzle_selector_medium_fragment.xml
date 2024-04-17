@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/puzzleSelectorHardFragment"
+    android:id="@+id/puzzleSelectorMediumFragment"
     android:background="@color/background">
 
     <GridLayout
-        android:id="@+id/hard_selector_grid"
+        android:id="@+id/medium_selector_grid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:columnCount="2"
+        android:columnCount="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,5 +20,17 @@
             android:id="@+id/medium_puzzle1_Objective1"
             style="@style/mainScreenPuzzle"
             app:tint="@color/medium_puzzle1"/>
+        <ImageButton
+            android:id="@+id/medium_puzzle2_Objective2"
+            style="@style/mainScreenPuzzle"
+            app:tint="@color/medium_puzzle2"/>
+        <ImageButton
+            android:id="@+id/medium_puzzle2_Objective3"
+            style="@style/mainScreenPuzzle"
+            app:tint="@color/medium_puzzle2"/>
+        <ImageButton
+            android:id="@+id/medium_puzzle2_Objective4"
+            style="@style/mainScreenPuzzle"
+            app:tint="@color/medium_puzzle2"/>
     </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
