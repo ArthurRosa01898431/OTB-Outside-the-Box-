@@ -7,11 +7,11 @@
     android:background="@color/background">
 
     <ImageButton
-        android:id="@+id/medium_puzzle2_objective1"
+        android:id="@+id/medium_puzzle3_objective5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/blink00"
-        android:backgroundTint="@color/medium_puzzle2"
+        android:backgroundTint="@color/medium_puzzle3"
         android:contentDescription="@string/startClock"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="228dp"
         android:gravity="center"
-        android:textColor="@color/medium_puzzle2"
+        android:textColor="@color/medium_puzzle3"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
