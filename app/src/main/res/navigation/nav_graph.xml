@@ -61,6 +61,12 @@
             android:id="@+id/action_puzzleSelectorMediumFragment_to_ai_camera_puzzle_medium"
             app:destination="@+id/ai_camera_puzzle_medium_puzzle_fragment">
         </action>
+
+        <action
+            android:id="@+id/action_puzzleSelectorMediumFragment_to_clock_puzzle_medium"
+            app:destination="@+id/clock_puzzle_medium_puzzle_fragment">
+        </action>
+
     </fragment>
 
     <fragment
@@ -106,4 +112,8 @@
     <fragment
         android:id="@+id/ai_camera_puzzle_medium_puzzle_fragment"
         android:name="com.example.otb.MediumPuzzle2FragmentImpl" />
+
+    <fragment
+        android:id="@+id/clock_puzzle_medium_puzzle_fragment"
+        android:name="com.example.otb.MediumPuzzle3FragmentImpl" />
 </navigation>

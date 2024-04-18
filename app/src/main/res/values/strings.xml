@@ -81,4 +81,6 @@
     <string name="help_navigate_title">How to Navigate the Game:</string>
     <string name="help_navigate_content_1">There are 3 different levels for puzzles and each puzzle has one or more objectives to solve. All puzzles are color-coded, so each objective has a color that corresponds to its puzzle. Click on an objective to start a puzzle.</string>
     <string name="help_navigate_content_2">If you are stuck during a puzzle, click on an objective to get hints for the puzzle and the specific objective.</string>
+    <string name="reset">Reset</string>
+    <string name="startClock">Start Timer</string>
 </resources>

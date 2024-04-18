@@ -32,5 +32,10 @@
             android:id="@+id/medium_puzzle2_Objective4"
             style="@style/mainScreenPuzzle"
             app:tint="@color/medium_puzzle2"/>
+
+        <ImageButton
+            android:id="@+id/medium_puzzle3_Objective5"
+            style="@style/mainScreenPuzzle"
+            app:tint="@color/medium_puzzle3"/>
     </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

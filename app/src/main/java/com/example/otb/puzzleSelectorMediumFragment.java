@@ -65,11 +65,19 @@ public class puzzleSelectorMediumFragment extends Fragment {
             }
         });
 
-        mBinding.mediumPuzzle2Objective3.setOnClickListener(new View.OnClickListener() {
+        mBinding.mediumPuzzle2Objective4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // obtain a NavController and navigate
                 Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorMediumFragment_to_ai_camera_puzzle_medium);
+            }
+        });
+
+        mBinding.mediumPuzzle3Objective5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // obtain a NavController and navigate
+                Navigation.findNavController(v).navigate(R.id.action_puzzleSelectorMediumFragment_to_clock_puzzle_medium);
             }
         });
 
@@ -91,6 +99,8 @@ public class puzzleSelectorMediumFragment extends Fragment {
                 case 4:
                     mBinding.mediumPuzzle2Objective4.setImageResource(R.drawable.filled);
                     break;
+                case 5:
+                    mBinding.mediumPuzzle3Objective5.setImageResource(R.drawable.filled);
                 default:
                     break;
             }
