@@ -23,13 +23,15 @@ import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 
-public class MediumPuzzle1FragmentImpl extends Fragment implements MediumPuzzle1Fragment {
+/**
+ * QR Code Puzzle.
+ */
+public class MediumPuzzle1FragmentImpl extends Fragment {
 
     // keep these two, give the hint fragment and the database helper
     private final hintFragment mHintFragment = new hintFragment();
     private  DatabaseHelper mDBHelper;
 
-    private final MediumPuzzle1LogicHandler mHandler = new MediumPuzzle1LogicHandler(this);
     private MediumPuzzle1FragmentBinding mBinding;
     private ActivityResultLauncher<Intent> qrScanLauncher;
 
@@ -154,7 +156,6 @@ public class MediumPuzzle1FragmentImpl extends Fragment implements MediumPuzzle1
         });
     }
 
-    @Override
     public void mediumPuzzle1Animation(int objectiveNumber) {
         switch (objectiveNumber) {
             case 1:

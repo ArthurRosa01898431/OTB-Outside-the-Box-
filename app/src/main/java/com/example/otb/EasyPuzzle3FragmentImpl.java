@@ -17,6 +17,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.otb.databinding.EasyPuzzle3FragmentBinding;
 
+/**
+ * Charger Puzzle.
+ */
 public class EasyPuzzle3FragmentImpl extends Fragment {
     public static final int PUZZLE_ID = 3;
     private final hintFragment mHintFragment = new hintFragment();

@@ -17,8 +17,11 @@ import com.example.otb.databinding.EasyPuzzle2FragmentBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
+/**
+ * Light Puzzle.
+ */
 @AndroidEntryPoint
-public class EasyPuzzle2FragmentImpl extends Fragment implements EasyPuzzle2Fragment {
+public class EasyPuzzle2FragmentImpl extends Fragment {
     private static final int PUZZLE_ID = 2;
     private final hintFragment mHintFragment = new hintFragment();
     private  DatabaseHelper mDDHelper;

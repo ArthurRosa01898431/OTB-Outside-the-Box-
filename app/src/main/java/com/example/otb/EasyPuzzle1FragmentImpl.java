@@ -12,6 +12,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.otb.databinding.EasyPuzzle1FragmentBinding;
 
+/**
+ * Brightness Puzzle.
+ */
 public class EasyPuzzle1FragmentImpl extends Fragment implements EasyPuzzle1Fragment {
     private static final int PUZZLE_ID = 1;
     private final hintFragment mHintFragment = new hintFragment();

@@ -15,7 +15,7 @@ import com.example.otb.databinding.PuzzleSelectorMediumFragmentBinding;
 
 
 /**
- * Fragment that shows (Easy, Medium, Hard) difficulty puzzles.
+ * Fragment that shows Medium difficulty puzzles.
  */
 public class puzzleSelectorMediumFragment extends Fragment {
     // View binding object for the DifficultyMenuFragment's layout.

@@ -25,12 +25,13 @@ import java.io.OutputStream;
 
 import com.example.otb.databinding.HardPuzzle1FragmentBinding;
 
-public class HardPuzzle1FragmentImpl extends Fragment implements HardPuzzle1Fragment{
+/**
+ * File Puzzle.
+ */
+public class HardPuzzle1FragmentImpl extends Fragment {
     // keep these two, give the hint fragment and the database helper
     private final hintFragment mHintFragment = new hintFragment();
     private DatabaseHelper mDDHelper;
-
-    private final HardPuzzle1LogicHandler mHandler = new HardPuzzle1LogicHandler(this);
     private ActivityResultLauncher<String> fileSelectorLauncher;
     private HardPuzzle1FragmentBinding mBinding;
 
@@ -118,7 +119,6 @@ public class HardPuzzle1FragmentImpl extends Fragment implements HardPuzzle1Frag
         reflectDataOnUI_Puzzle2(2);
     }
 
-    @Override
     public void hardPuzzle1Animation(int objectiveNumber) {
         switch (objectiveNumber) {
             case 1:
@@ -132,7 +132,6 @@ public class HardPuzzle1FragmentImpl extends Fragment implements HardPuzzle1Frag
         }
     }
 
-
     private void setUpHintFragment() {
         String[] hintAllObjText = getResources().getStringArray(R.array.Puzzle2HintsAllObjectives);
         String[] hintObj1Text = getResources().getStringArray(R.array.Puzzle2HintsObjective1);
@@ -140,7 +139,6 @@ public class HardPuzzle1FragmentImpl extends Fragment implements HardPuzzle1Frag
         mHintFragment.createObjectiveHints(R.drawable.puzzle2_obj_all_image, hintAllObjText, true);
         mHintFragment.createObjectiveHints(R.drawable.puzzle2_obj1_image, hintObj1Text, false);
     }
-
 
     public void reflectDataOnUI_Puzzle2(final int puzzleId) {
         // Main Activity gets data from the database and each puzzle will have it's own lambda.
@@ -154,8 +152,6 @@ public class HardPuzzle1FragmentImpl extends Fragment implements HardPuzzle1Frag
             }
         });
     }
-
-
 
     public String readFileContent(Uri uri) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -179,7 +175,6 @@ public class HardPuzzle1FragmentImpl extends Fragment implements HardPuzzle1Frag
 
         createDocumentLauncher.launch(intent);
     }
-
 
     public void writeToFile(Context context, Uri uri, String content) throws IOException {
         try (OutputStream outputStream = context.getContentResolver().openOutputStream(uri)) {

@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.otb.databinding.MediumPuzzle3FragmentBinding;
 
+/**
+ * Timer Puzzle.
+ */
 public class MediumPuzzle3FragmentImpl extends Fragment {
 
     private MediumPuzzle3FragmentBinding mBinding;

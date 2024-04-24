@@ -30,6 +30,9 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Fruit Recognition Puzzle.
+ */
 public class MediumPuzzle2FragmentImpl extends Fragment {
     private static final int PUZZLE_ID = 2;
     private static final int IMAGE_SIZE = 32;
