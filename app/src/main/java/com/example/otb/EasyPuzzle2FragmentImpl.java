@@ -77,7 +77,6 @@ public class EasyPuzzle2FragmentImpl extends Fragment {
         reflectDataOnUI_Puzzle2();
     }
 
-    @Override
     public void EasyPuzzle2Animation(int objectiveNumber) {
         if (!mDDHelper.isObjectiveNumberInDatabase("Easy", PUZZLE_ID, objectiveNumber)) {
             mDDHelper.insertData(PUZZLE_ID, objectiveNumber, "Easy");
